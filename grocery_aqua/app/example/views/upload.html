@@ -5,16 +5,57 @@
             Upload Item
         </super-navbar-title>
     </super-navbar>
-
+    <div class="item item-body">
     <div id="new-camera" align="left">
         <button id="uploadimage"  ng-click="takePicture()">Use camera</button>
-
         <button id="uploadimage1" ng-click="takePicture1()">Use Photo library</button>
     </div>
     <br>
 
     <img id="showImage" class="full-image">
+        </div>
     <br>
+
+    <form name="myform">
+        <label class="item item-input">
+            <input ng-model="item.name" name="item_name" type="text" placeholder="Item Name" />
+        </label>
+        <label class="item item-input item-select">
+            <div class="input-label" >
+             Quantity
+            </div>
+            <select ng-model="item.quantity" >
+                <option  value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="6">7</option>
+                <option value="6">8</option>
+                <option value="6">9</option>
+            </select>
+        </label>
+
+        <label class="item item-input item-select">
+            <div class="input-label" >
+              Unit
+            </div>
+            <select ng-model="item.unit" >
+                <option  value="0">pcs</option>
+                <option value="1">packs</option>
+                <option value="2">lbs</option>
+                <option value="2">oz</option>
+                <option value="2">btl</option>
+                <option value="2">kg</option>
+                <option value="2">btl</option>
+            </select>
+        </label>
+        <label class="item item-input">
+            <textarea ng-model="item.info" placeholder="Additional Info"></textarea>
+        </label>
+    </form>
     <div>
         <p>
         </p>

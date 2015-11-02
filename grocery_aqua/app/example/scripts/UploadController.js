@@ -4,8 +4,6 @@ angular
         var cameraOptions = {
             destinationType: "dataURL",
             quality: 40,
-
-            saveToPhotoAlbum: true
         };
 
         $scope.takePicture = function() {
@@ -18,10 +16,6 @@ angular
 
 
         };
-
-
-
-
         $scope.takePicture1 = function() {
             supersonic.logger.log("inside loop");
             supersonic.media.camera.getFromPhotoLibrary(cameraOptions).then( function(result1){
