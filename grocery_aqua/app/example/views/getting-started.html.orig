@@ -2,7 +2,11 @@
 
   <super-navbar>
     <super-navbar-title>
+<<<<<<< HEAD
+      Grocery List App
+=======
       My Groceries
+>>>>>>> origin/master
     </super-navbar-title>
   </super-navbar>
 
