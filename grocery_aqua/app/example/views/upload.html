@@ -6,14 +6,13 @@
         </super-navbar-title>
     </super-navbar>
     <div class="item item-body">
-    <div id="new-camera" align="left">
-        <button id="uploadimage"  ng-click="takePicture()">Use camera</button>
-        <button id="uploadimage1" ng-click="takePicture1()">Use Photo library</button>
-    </div>
-    <br>
-
-    <img id="showImage" class="full-image">
+        
+        <img  src="/placeholder.png" id="showImage" class="full-image">
+        <div id="new-camera" align="center">
+            <button aclass="button icon-center super-camera button-calm" id="uploadimage"  ng-click="takePicture()" style="width:25%;"></button>
+            <button class="button icon-center super-folder button-calm" id="uploadimage1" ng-click="takePicture1()" style="width:25%;"></button>
         </div>
+    </div>
     <br>
 
     <form name="myform">
@@ -25,7 +24,7 @@
              Quantity
             </div>
             <select ng-model="groceryItem.quantity" >
-                <option  value="0">0</option>
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -56,7 +55,9 @@
             <textarea ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
         </label>
         <br>
-        <button ng-click="submitItem()">Submit new item</button>
+        <div style="text-align: center ;">
+            <button align="center"class="button button-dark" ng-click="submitItem()" style="width:100%">Submit</button>
+        </div>
     </form>
     <div>
         <p>
