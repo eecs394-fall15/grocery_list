@@ -18,13 +18,13 @@
 
     <form name="myform">
         <label class="item item-input">
-            <input ng-model="item.name" name="item_name" type="text" placeholder="Item Name" />
+            <input ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
         </label>
         <label class="item item-input item-select">
             <div class="input-label" >
              Quantity
             </div>
-            <select ng-model="item.quantity" >
+            <select ng-model="groceryItem.quantity" >
                 <option  value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -42,7 +42,7 @@
             <div class="input-label" >
               Unit
             </div>
-            <select ng-model="item.unit" >
+            <select ng-model="groceryItem.unit" >
                 <option  value="0">pcs</option>
                 <option value="1">packs</option>
                 <option value="2">lbs</option>
@@ -53,8 +53,10 @@
             </select>
         </label>
         <label class="item item-input">
-            <textarea ng-model="item.info" placeholder="Additional Info"></textarea>
+            <textarea ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
         </label>
+        <br>
+        <button ng-click="submitItem()">Submit new item</button>
     </form>
     <div>
         <p>

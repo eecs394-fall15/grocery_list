@@ -6,7 +6,7 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="list" ng-repeat="item in formData.items">
+  <div class="list" ng-repeat="item in groceryItems">
     <a id= "item.id" class="item item-thumbnail-left" href="#" ng-click="delete(item.id)">
       <img src = "example1.jpg">
       <h2>{{item.name}}</h2>

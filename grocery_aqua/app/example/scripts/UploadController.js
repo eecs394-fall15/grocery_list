@@ -6,24 +6,40 @@ angular
             quality: 40,
         };
 
+        $scope.groceryItem = {};
+
         $scope.takePicture = function() {
             supersonic.media.camera.takePicture(cameraOptions).then( function(result){
                 //save image dataURL into dataURL
                 //change the image on the new.html to the one taken
                 var image = document.getElementById('showImage');
                 image.src = "data:image/jpeg;base64," + result;
-            })
+            });
 
 
         };
         $scope.takePicture1 = function() {
             supersonic.logger.log("inside loop");
             supersonic.media.camera.getFromPhotoLibrary(cameraOptions).then( function(result1){
-             
+
                 var image = document.getElementById('showImage');
                 image.src = "data:image/jpeg;base64," + result1;
-            })
+            });
         };
+
+        $scope.submitItem = function()  {
+
+            supersonic.data.channel('addListItem').publish($scope.groceryItem);
+            var instructions = {
+                message: "Item Submitted!",
+                buttonLabel: "Done!"
+            };
+
+            supersonic.ui.dialog.alert("Success", instructions).then(function() {
+
+            });
+        };
+
 
 
     });
