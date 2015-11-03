@@ -17,13 +17,8 @@ angular
 
     $scope.delete = function(id)
     {
-<<<<<<< Updated upstream
       supersonic.logger.log("delete clicked, id = " + id);
       $("#" + id).css("color", "red");
-=======
-      supersonic.logger.log("delete clicked, id = " + id); 
-      deleteButtonVisible = true;
->>>>>>> Stashed changes
 
     }
     supersonic.data.channel('addListItem').subscribe(function(newItem) {
