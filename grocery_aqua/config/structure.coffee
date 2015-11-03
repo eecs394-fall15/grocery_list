@@ -5,19 +5,14 @@ module.exports =
   # See styling options for tabs and other native components in app/common/native-styles/ios.css or app/common/native-styles/android.css
   tabs: [
     {
-      title: "Index"
-      id: "index"
+      title: "My Grocery List"
+      id: "myGroceryList"
       location: "example#getting-started" # Supersonic module#view type navigation
     }
     {
       title: "Add Item"
-      id: "settings"
+      id: "addItem"
       location: "example#upload"
-    }
-    {
-      title: "Internet"
-      id: "internet"
-      location: "http://google.com" # URLs are supported!
     }
   ]
 

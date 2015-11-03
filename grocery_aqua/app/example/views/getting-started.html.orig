@@ -3,7 +3,11 @@
 
   <super-navbar>
     <super-navbar-title>
+<<<<<<< HEAD
+      Welcome to Supersonic
+=======
       My Groceries
+>>>>>>> origin/master
     </super-navbar-title>
   </super-navbar>
 
