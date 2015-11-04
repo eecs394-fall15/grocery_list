@@ -6,24 +6,25 @@
       My Groceries
     </super-navbar-title>
   </super-navbar>
-
+ <div class="item item-divider">My Groceries</div>
  <div class="list" ng-repeat="item in groceryItems">
     <a ng-if=item.onList id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
       <img src = "example1.jpg">
 
       <h2>{{item.name}}</h2>
-      <p id = "test">Quantity: {{item.quantity}}</p>
-      <p> {{item.onList}}</p>
+      <p>Quantity: {{item.quantity}} {{item.unit}}</p>
+      <p>Description: {{item.info}}</p>
       <button class="button button-assertive super-close-round" style="border-radius:10px; " ng-click="close(item.id)"> </button>
     </a>
   </div>
+  <div class="item item-divider">Previous Groceries</div>
   <div class="list" ng-repeat="item in groceryItems">
     <a ng-if=!item.onList style="background-color: #666666;" id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
       <img src = "example1.jpg">
 
       <h2 style = "color:#ffffff;">{{item.name}}</h2>
-      <p style = "color:#ffffff;">Quantity: {{item.quantity}}</p>
-      <p> {{item.onList}}</p>
+      <p style = "color:#ffffff;">Quantity: {{item.quantity}} {{item.unit}}</p>
+      <p style = "color:#ffffff;">Description: {{item.info}}</p>
       <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-if=!item.onList ng-click="open(item.id)"> </button>
     </a>
   </div>

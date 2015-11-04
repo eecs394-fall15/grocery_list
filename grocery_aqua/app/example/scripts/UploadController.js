@@ -6,7 +6,7 @@ angular
             quality: 40,
         };
 
-        $scope.groceryItem = {};
+        $scope.groceryItem = {onList: true};
 
         $scope.takePicture = function() {
             supersonic.media.camera.takePicture(cameraOptions).then( function(result){
