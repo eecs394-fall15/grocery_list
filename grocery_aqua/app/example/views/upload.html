@@ -17,13 +17,13 @@
 
     <form name="myform">
         <label class="item item-input">
-            <input ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
+            <input id = "item_name" ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
         </label>
         <label class="item item-input item-select">
             <div class="input-label" >
              Quantity
             </div>
-            <select ng-model="groceryItem.quantity" >
+            <select id = "item_quantity" ng-model="groceryItem.quantity" >
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -41,18 +41,24 @@
             <div class="input-label" >
               Unit
             </div>
-            <select ng-model="groceryItem.unit" >
-                <option value="0">items</option>
-                <option value="1">packs</option>
-                <option value="2">lbs</option>
-                <option value="3">oz</option>
-                <option value="4">btl</option>
-                <option value="5">kg</option>
-                <option value="6">btl</option>
+            <select id = "item_unit" ng-model="groceryItem.unit" >
+                <option value="unit(s)">unit(s)</option>
+                <option value="piece(s) ">piece(s)</option>
+                <option value="pack(s)">pack(s)</option>
+                <option value="bag(s)">bag(s)</option>
+                <option value="box(es)">box(es)</option>
+                <option value="carton(s)">carton(s)</option>
+                <option value="sack(s)">sack(s)</option>
+                <option value="bottle(s)">bottle(s)</option>
+                <option value="liter(s)">liter(s)</option>
+                <option value="pint(s)">pint(s)</option>
+                <option value="quart(s)">quart(s)</option>
+                <option value="gallon(s)">gallon(s)</option>
+
             </select>
         </label>
         <label class="item item-input">
-            <textarea ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
+            <textarea id = "item_info" ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
         </label>
         <br>
         <div style="text-align: center ;">
