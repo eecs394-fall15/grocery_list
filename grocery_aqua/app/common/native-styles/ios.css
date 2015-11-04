@@ -35,9 +35,9 @@ tab-bar tab-bar-item:addItem {
 }
 
 tab-bar-item#addItem {
-  background-image: url(icons/cog.svg);
+  background-image: url(icons/plus-round.svg);
 }
 
 tab-bar-item#myGroceryList {
-  background-image: url(icons/home.svg);
+  background-image: url(icons/navicon.svg);
 }

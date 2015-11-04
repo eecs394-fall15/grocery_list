@@ -60,6 +60,14 @@ tab-bar tab-bar-item marker-top:selected {
   background-color: #1596f7;
 }
 
+tab-bar-item#myGroceryList {
+  background-image: url(icons/navicon.svg);
+}
+
+tab-bar-item#addItem {
+  background-image: url(icons/plus-round.svg);
+}
+
 tab-bar-item#settings {
   background-image: url(icons/cog.svg);
 }
