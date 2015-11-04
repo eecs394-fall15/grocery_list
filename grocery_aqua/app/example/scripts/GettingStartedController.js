@@ -20,11 +20,23 @@ angular
         id: 1,
         name: 'Apples',
         quantity: '3'
+      },
+      {
+        id: 2,
+        name: 'Oranges',
+        quantity: '3'
       }
   	];
 
     $scope.delete = function(id) {
+
       supersonic.logger.log("delete clicked, id = " + id); 
+      
+      for (var i = 0; i < $scope.groceryItems.length; i++) {
+        if ($scope.groceryItems[i].id == id) {
+          $scope.groceryItems.splice(i, 1);
+        }
+      }
       swipeID = -1;
 
     }
