@@ -14,17 +14,20 @@ angular
       {
         id: 0,
         name: 'Bananas',
-        quantity: 6
+        quantity: 6,
+        onList: true
       },
       {
         id: 1,
         name: 'Apples',
-        quantity: '3'
+        quantity: '3',
+        onList: true
       },
       {
         id: 2,
         name: 'Oranges',
-        quantity: '3'
+        quantity: '3',
+        onList:false
       }
   	];
 
@@ -40,6 +43,34 @@ angular
       swipeID = -1;
 
     }
+
+    $scope.open = function(id) {
+
+      supersonic.logger.log("delete clicked, id = " + id); 
+      
+      for (var i = 0; i < $scope.groceryItems.length; i++) {
+        if ($scope.groceryItems[i].id == id) {
+          $scope.groceryItems[i].onList = true;
+        }
+      }
+      swipeID = -1;
+
+    }
+    $scope.close = function(id) {
+
+      supersonic.logger.log("delete clicked, id = " + id); 
+      
+      for (var i = 0; i < $scope.groceryItems.length; i++) {
+        if ($scope.groceryItems[i].id == id) {
+          $scope.groceryItems[i].onList = false;
+        }
+      }
+      swipeID = -1;
+
+    }
+
+
+
     $scope.postpone = function(id) {
       supersonic.logger.log("postpone clicked, id = " + id); 
       swipeID = -1;

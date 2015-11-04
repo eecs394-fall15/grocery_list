@@ -8,17 +8,23 @@
   </super-navbar>
 
  <div class="list" ng-repeat="item in groceryItems">
-    <a id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
+    <a ng-if=item.onList id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
       <img src = "example1.jpg">
 
       <h2>{{item.name}}</h2>
       <p id = "test">Quantity: {{item.quantity}}</p>
-      <p>Last bought: 05/02/15</p>
-      <button class="button button-assertive" ng-if="isSwipeID(item.id)" ng-click="postpone(item.id)">
-      <button class="button button-assertive super-close-round" ng-if="isSwipeID(item.id)" ng-click="delete(item.id)">
-        <!--<i class=""></i> icon code-->
-        Delete
-      </button>
+      <p> {{item.onList}}</p>
+      <button class="button button-assertive super-close-round" style="border-radius:10px; " ng-click="close(item.id)"> </button>
+    </a>
+  </div>
+  <div class="list" ng-repeat="item in groceryItems">
+    <a ng-if=!item.onList style="background-color: #666666;" id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
+      <img src = "example1.jpg">
+
+      <h2 style = "color:#ffffff;">{{item.name}}</h2>
+      <p style = "color:#ffffff;">Quantity: {{item.quantity}}</p>
+      <p> {{item.onList}}</p>
+      <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-if=!item.onList ng-click="open(item.id)"> </button>
     </a>
   </div>
 
