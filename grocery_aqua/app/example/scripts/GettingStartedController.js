@@ -15,23 +15,22 @@ angular
         id: 0,
         name: 'Bananas',
         quantity: 6,
-        unit: 'unit',
+        unit: 'unit(s)',
         onList: true
       },
       {
         id: 1,
         name: 'Apples',
         quantity: '3',
-        unit: 'unit',
+        unit: 'unit(s)',
         onList: true
       },
       {
         id: 2,
         name: 'Oranges',
         quantity: '3',
-        unit: 'unit',
-        onList:false
-      }
+        unit: 'unit(s)',
+        onList:false      }
   	];
 
     $scope.delete = function(id) {

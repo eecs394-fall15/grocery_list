@@ -9,7 +9,7 @@
  <div class="item item-divider">My Groceries</div>
  <div class="list" ng-repeat="item in groceryItems">
     <a ng-if=item.onList id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
-      <img src = "example1.jpg">
+      <img src = "/images/{{item.name.toLowerCase()}}.jpg">
 
       <h2>{{item.name}}</h2>
       <p>Quantity: {{item.quantity}} {{item.unit}}</p>
@@ -20,7 +20,7 @@
   <div class="item item-divider">Previous Groceries</div>
   <div class="list" ng-repeat="item in groceryItems">
     <a ng-if=!item.onList style="background-color: #666666;" id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
-      <img src = "example1.jpg">
+      <img src = "/images/{{item.name.toLowerCase()}}.jpg">
 
       <h2 style = "color:#ffffff;">{{item.name}}</h2>
       <p style = "color:#ffffff;">Quantity: {{item.quantity}} {{item.unit}}</p>
