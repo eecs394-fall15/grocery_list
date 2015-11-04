@@ -29,6 +29,8 @@ angular
 
         $scope.submitItem = function()  {
 
+            // var image = document.getElementById('showImage');
+            // image.src ="/placeholder.png"
             supersonic.data.channel('addListItem').publish($scope.groceryItem);
             var instructions = {
                 message: "Item Submitted!",
