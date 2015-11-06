@@ -1,0 +1,28 @@
+
+<div class="padding" ng-controller="GettingStartedController">
+
+  <super-navbar>
+    <super-navbar-title>
+<<<<<<< HEAD
+      Welcome to Supersonic
+=======
+      My Groceries
+>>>>>>> origin/master
+    </super-navbar-title>
+  </super-navbar>
+
+ <div class="list" ng-repeat="item in groceryItems">
+    <a id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
+      <img src = "example1.jpg">
+
+      <h2>{{item.name}}</h2>
+      <p id = "test">Quantity: {{item.quantity}}</p>
+      <p>Last bought: 05/02/15</p>
+      <button class="button button-positive" ng-if="isSwipeID(item.id)" ng-click="postpone(item.id)">
+        <!--<i class=""></i> icon code-->
+        Delete
+      </button>
+    </a>
+  </div>
+
+</div>
