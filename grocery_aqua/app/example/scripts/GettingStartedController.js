@@ -30,21 +30,21 @@ angular
         name: 'Oranges',
         quantity: '3',
         unit: 'unit(s)',
-        onList:false      
+        onList:true      
       },
       {
         id: 3,
         name: 'Mac-N-Cheese',
         quantity: '3',
         unit: 'unit(s)',
-        onList:true      
+        onList:false      
       },
       {
         id: 4,
         name: 'Soccerball',
         quantity: '1',
         unit: 'unit(s)',
-        onList:true      
+        onList:false      
       }
   	];
 
