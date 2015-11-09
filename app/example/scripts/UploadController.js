@@ -5,27 +5,43 @@ angular
             destinationType: "dataURL",
             quality: 40,
         };
+        // var cameraDataURL = "http://localhost/images/camera.jpg";
+       // var defaultDataURL = "http://localhost/images/default.jpg";
 
-        $scope.groceryItem = {onList: true};
+        $scope.groceryItem = {onList: true}; 
+        $scope.image="/placeholder.png";
+        $scope.defaultImage = true;
 
-        $scope.takePicture = function() {
+        $scope.takePicture = function(input_type) {
+
+supersonic.logger.log(input_type);
+            if(input_type==1)
+            {
+                supersonic.logger.log("inside camera");
             supersonic.media.camera.takePicture(cameraOptions).then( function(result){
                 //save image dataURL into dataURL
                 //change the image on the new.html to the one taken
-                var image = document.getElementById('showImage');
-                image.src = "data:image/jpeg;base64," + result;
+                $scope.image = result;
+                 $scope.defaultImage = false;
+               
             });
+        }
+        if(input_type==2)
+
+        {
+              supersonic.logger.log("inside photo library");
+
+   supersonic.media.camera.getFromPhotoLibrary(cameraOptions).then( function(result){
+
+                 $scope.image = result;
+                  $scope.defaultImage = false;
+            });
+
+        }
 
 
         };
-        $scope.takePicture1 = function() {
-            supersonic.logger.log("inside loop");
-            supersonic.media.camera.getFromPhotoLibrary(cameraOptions).then( function(result1){
-
-                var image = document.getElementById('showImage');
-                image.src = "data:image/jpeg;base64," + result1;
-            });
-        };
+       
 
         $scope.submitItem = function()  {
 
@@ -53,7 +69,6 @@ angular
 
             });
         };
-
 
 
     });
