@@ -92,6 +92,8 @@ angular
 
         };
 
-
+        $scope.openSidebar = function(){
+          supersonic.ui.drawers.open('left');
+        };
 
     });

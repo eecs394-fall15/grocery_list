@@ -30,21 +30,21 @@ angular
         name: 'Oranges',
         quantity: '3',
         unit: 'unit(s)',
-        onList:true      
+        onList:true
       },
       {
         id: 3,
         name: 'Mac-N-Cheese',
         quantity: '3',
         unit: 'unit(s)',
-        onList:false      
+        onList:false
       },
       {
         id: 4,
         name: 'Soccerball',
         quantity: '1',
         unit: 'unit(s)',
-        onList:false      
+        onList:false
       }
   	];
 
@@ -59,11 +59,11 @@ angular
       }
       swipeID = -1;
 
-    }
+    };
 
     $scope.open = function(id) {
 
-      supersonic.logger.log("delete clicked, id = " + id); 
+      supersonic.logger.log("delete clicked, id = " + id);
       var name = "";
       for (var i = 0; i < $scope.groceryItems.length; i++) {
         if ($scope.groceryItems[i].id == id) {
@@ -82,11 +82,11 @@ angular
 
             });
 
-    }
+    };
     $scope.close = function(id) {
 
-      supersonic.logger.log("delete clicked, id = " + id); 
-      
+      supersonic.logger.log("delete clicked, id = " + id);
+
       var name = "";
       for (var i = 0; i < $scope.groceryItems.length; i++) {
         if ($scope.groceryItems[i].id == id) {
@@ -103,7 +103,7 @@ angular
 
       supersonic.ui.dialog.alert("Item removed:", instructions).then(function() {});
 
-    }
+    };
 
 
 
@@ -111,20 +111,30 @@ angular
       supersonic.logger.log("postpone clicked, id = " + id);
       swipeID = -1;
 
-    }
+    };
     $scope.swipeLeft = function(id) {
       state = "DELETE";
       supersonic.logger.log("swiped left, id = " + id);
       swipeID = id;
 
-    }
+    };
     $scope.swipeRight = function(id) {
       state = "POSTPONE";
       supersonic.logger.log("swiped right, id = " + id);
       swipeID = id;
-    }
+    };
     supersonic.data.channel('addListItem').subscribe(function(newItem) {
       $scope.groceryItems.push(newItem);
       $scope.$apply();
     });
+
+    //The function that is called when the list is changed in the sidebar
+    supersonic.data.channel('changeList').subscribe(function(listID){
+      supersonic.logger.log('Now display list ' + listID);
+    });
+
+    $scope.openSidebar = function(){
+      supersonic.ui.drawers.open('left');
+    };
+
   });
