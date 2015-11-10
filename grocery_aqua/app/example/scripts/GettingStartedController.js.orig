@@ -28,10 +28,16 @@ angular
       {
         id: 2,
         name: 'Oranges',
+<<<<<<< Updated upstream
         quantity: '3',
         unit: 'unit(s)',
         onList:false      }
   	];
+=======
+        quantity: '3'
+      }
+    ];
+>>>>>>> Stashed changes
 
     $scope.delete = function(id) {
 
