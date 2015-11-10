@@ -1,2 +1,6 @@
-
-grocery_aqua/config/cloud.json
+.DS_Store
+/dist
+node_modules
+bower_components
+.sass-cache/
+logs/

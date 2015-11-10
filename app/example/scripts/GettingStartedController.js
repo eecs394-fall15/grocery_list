@@ -8,7 +8,7 @@ angular
         return true;
       }
       return false;
-    };
+    }
     $scope.state = "NORMAL";
     $scope.groceryItems = [
       {
@@ -30,28 +30,13 @@ angular
         name: 'Oranges',
         quantity: '3',
         unit: 'unit(s)',
-        onList:true      
-      },
-      {
-        id: 3,
-        name: 'Mac-N-Cheese',
-        quantity: '3',
-        unit: 'unit(s)',
-        onList:false      
-      },
-      {
-        id: 4,
-        name: 'Soccerball',
-        quantity: '1',
-        unit: 'unit(s)',
-        onList:false      
-      }
+        onList:false      }
   	];
 
     $scope.delete = function(id) {
 
-      supersonic.logger.log("delete clicked, id = " + id);
-
+      supersonic.logger.log("delete clicked, id = " + id); 
+      
       for (var i = 0; i < $scope.groceryItems.length; i++) {
         if ($scope.groceryItems[i].id == id) {
           $scope.groceryItems.splice(i, 1);
@@ -108,19 +93,19 @@ angular
 
 
     $scope.postpone = function(id) {
-      supersonic.logger.log("postpone clicked, id = " + id);
+      supersonic.logger.log("postpone clicked, id = " + id); 
       swipeID = -1;
 
     }
     $scope.swipeLeft = function(id) {
       state = "DELETE";
-      supersonic.logger.log("swiped left, id = " + id);
+      supersonic.logger.log("swiped left, id = " + id); 
       swipeID = id;
 
     }
     $scope.swipeRight = function(id) {
       state = "POSTPONE";
-      supersonic.logger.log("swiped right, id = " + id);
+      supersonic.logger.log("swiped right, id = " + id); 
       swipeID = id;
     }
     supersonic.data.channel('addListItem').subscribe(function(newItem) {
