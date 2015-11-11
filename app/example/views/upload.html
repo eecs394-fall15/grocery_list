@@ -6,18 +6,18 @@
         </super-navbar-title>
     </super-navbar>
     <div class="item item-body">
-        
-        <img  src="/placeholder.png" id="showImage" class="full-image">
+        <img ng-if="defaultImage" class="full-image" src="{{image}}" >
+        <img id="showImage" ng-if="!defaultImage" class="full-image" src="data:image/png;base64,{{image}}" >
         <div id="new-camera" align="center">
-            <button class="button icon-center super-camera button-calm" id="uploadimage"  ng-click="takePicture()" style="width:49%;"></button>
-            <button class="button icon-center super-folder button-calm" id="uploadimage1" ng-click="takePicture1()" style="width:49%;"></button>
+            <button class="button icon-center super-camera button-calm" id="uploadimage"  ng-click="takePicture(1)" style="width:49%;"></button>
+            <button class="button icon-center super-folder button-calm" id="uploadimage1" ng-click="takePicture(2)" style="width:49%;"></button>
         </div>
     </div>
     <br>
 
     <form name="myform">
         <label class="item item-input">
-            <input id = "item_name" ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
+            <input id ="item_name" ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
         </label>
         <label class="item item-input item-select">
             <div class="input-label" >
@@ -62,7 +62,7 @@
         </label>
         <br>
         <div style="text-align: center ;">
-            <button align="center"class="button button-dark" ng-click="submitItem()" style="width:100%">Submit</button>
+            <button align="center"class="button button-dark" ng-click="submitImage(groceryItem)" style="width:100%">Submit</button>
         </div>
     </form>
     <div>

@@ -1,12 +1,15 @@
 <div class="padding" ng-controller="UpdateController">
 
     <super-navbar>
+        <super-navbar-button ng-click="openSidebar()">
+            Settings
+        </super-navbar-button>
         <super-navbar-title>
             Upload Item
         </super-navbar-title>
     </super-navbar>
     <div class="item item-body">
-        
+
         <img  src="/placeholder.png" id="showImage" class="full-image">
         <div id="new-camera" align="center">
             <button class="button icon-center super-camera button-calm" id="uploadimage"  ng-click="takePicture()" style="width:49%;"></button>
@@ -62,7 +65,7 @@
         </label>
         <br>
         <div style="text-align: center ;">
-            <button align="center"class="button button-dark" ng-click="submitItem()" style="width:100%">Submit</button>
+            <button align="center"class="button button-dark" ng-click="submitImage(groceryItem)" style="width:100%">Submit</button>
         </div>
     </form>
     <div>

@@ -54,6 +54,46 @@ angular
             });
         };
 
+        $scope.submitImage = function(groceryItem) {
 
+        var  ImageClass= Parse.Object.extend("ImageData");
+                    var img = new ImageClass();
+                    var file = new Parse.File("item_image.png", { base64: $scope.image });
+
+
+        img.set("item_name", groceryItem.name);
+              img.set("item_quantity", groceryItem.quantity);
+              img.set("item_unit", groceryItem.unit);
+              img.set("item_info", groceryItem.info);
+
+               file.save().then(function() {
+
+
+              }, function(error) {
+
+              });
+
+               img.set('itemImage', file);
+
+                 img.save(null, {
+                success: function(Img) {
+                  // Execute any logic that should take place after the object is saved.
+                  supersonic.ui.dialog.alert('Uploaded photo!');
+                },
+                error: function(Img, error) {
+                  // Execute any logic that should take place if the save fails.
+                  // error is a Parse.Error with an error code and message.
+                  supersonic.ui.dialog.alert('Sorry, there was a problem.');
+                }
+
+              });
+
+
+
+        };
+
+        $scope.openSidebar = function(){
+          supersonic.ui.drawers.open('left');
+        };
 
     });
