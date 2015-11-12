@@ -70,7 +70,13 @@ supersonic.logger.log(input_type);
             });
         };
 
-
+$scope.currentListID;
+supersonic.data.channel('changeList').subscribe(function(listID){
+      $scope.currentListID = listID;
+      $scope.current();
+      $scope.previous();
+      supersonic.logger.log('Now display list ' + listID);
+    });
 $scope.submitImage = function(groceryItem) {
 
 var  ImageClass= Parse.Object.extend("ImageData");
@@ -82,7 +88,8 @@ img.set("item_name", groceryItem.name);
       img.set("item_quantity", groceryItem.quantity);
       img.set("item_unit", groceryItem.unit);
       img.set("item_info", groceryItem.info);
-   img.set("item_status", status);
+    img.set("item_status", status);
+    img.set("list_id", $scope.currentListID)
        file.save().then(function() {
        
        
