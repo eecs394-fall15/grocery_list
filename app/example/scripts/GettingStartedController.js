@@ -1,12 +1,13 @@
 angular
   .module('example')
   .controller('GettingStartedController', function($scope, supersonic) {
-  $scope.resultImages = [];
-$scope.resultImages1 = [];
+
+
 
 
 
 $scope.current= function() {
+    $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.equalTo("item_status","O")
@@ -42,7 +43,7 @@ $scope.current= function() {
 
 
 $scope.previous= function() {
-
+$scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("ImageData");
     var prevQuery = new Parse.Query(prevClass);
     prevQuery.equalTo("item_status","P")
@@ -88,30 +89,17 @@ $scope.previous= function() {
     $scope.state = "NORMAL";
 
     $scope.current();
-       $scope.previous();
-    /*$scope.groceryItems = [
-      {
-        id: 0,
-        name: 'Bananas',
-        quantity: 6,
-        unit: 'unit(s)',
-        onList: true
-      },
-      {
-        id: 1,
-        name: 'Apples',
-        quantity: '3',
-        unit: 'unit(s)',
-        onList: true
-      },
-      {
-        id: 2,
-        name: 'Oranges',
-        quantity: '3',
-        unit: 'unit(s)',
-        onList:false      }
-  	];
-*/
+    $scope.previous();
+
+  supersonic.ui.tabs.whenDidChange( function() {
+
+    $scope.current();
+    $scope.previous();
+    });
+
+
+
+
     $scope.delete = function(id) {
 
       supersonic.logger.log("delete clicked, id = " + id); 
@@ -131,7 +119,9 @@ $scope.previous= function() {
       success: function(updateQuery) {
 
 supersonic.logger.log("saved successfully");
-          
+     $scope.current();
+   $scope.previous();
+       
  
       },
       error: function(updateQuery,error) {
@@ -139,7 +129,6 @@ supersonic.logger.log("saved successfully");
       }
     });
 
-  $scope.current();
 
     }
 
@@ -156,7 +145,8 @@ supersonic.logger.log("saved successfully");
       success: function(updateQuery) {
 
 supersonic.logger.log("saved successfully");
-          
+       $scope.previous();
+    $scope.current();    
  
       },
       error: function(updateQuery,error) {
@@ -164,7 +154,7 @@ supersonic.logger.log("saved successfully");
       }
     });
 
- 
+
 
     }
 

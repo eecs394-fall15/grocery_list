@@ -77,12 +77,12 @@ var  ImageClass= Parse.Object.extend("ImageData");
             var img = new ImageClass();
             var file = new Parse.File("item_image.png", { base64: $scope.image });
 
-
+var status="O";
 img.set("item_name", groceryItem.name);
       img.set("item_quantity", groceryItem.quantity);
       img.set("item_unit", groceryItem.unit);
       img.set("item_info", groceryItem.info);
-
+   img.set("item_status", status);
        file.save().then(function() {
        
        
@@ -95,7 +95,7 @@ img.set("item_name", groceryItem.name);
          img.save(null, {
         success: function(Img) {
           // Execute any logic that should take place after the object is saved.
-          supersonic.ui.dialog.alert('Uploaded photo!');
+          supersonic.ui.dialog.alert('Submitted Successfully!');
         },
         error: function(Img, error) {
           // Execute any logic that should take place if the save fails.
