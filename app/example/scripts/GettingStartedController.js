@@ -122,6 +122,7 @@ $scope.previous= function() {
     $scope.open = function(itemID) {
 
     var  UpdateClass= Parse.Object.extend("ImageData");
+    supersonic.logger.log("here");
             var status="O";
    var updateQuery = new UpdateClass();
    updateQuery.id=itemID;
