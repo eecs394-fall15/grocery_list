@@ -14,6 +14,11 @@ module.exports =
       id: "addItem"
       location: "example#upload"
     }
+    {
+      title: "List Settings"
+      id: "settings"
+      location: "example#settings"
+    }
   ]
 
   # rootView:
