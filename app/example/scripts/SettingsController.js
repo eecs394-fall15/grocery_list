@@ -86,6 +86,22 @@ angular
 
 		//Find all people details
 	}
+
+$scope.forward=function()
+{
+
+var modalView = new supersonic.ui.View("example#addgroup");
+var options = {
+  animate: true
+}
+
+supersonic.ui.modal.show(modalView, options);
+
+
+}
+
+
+
   });
 
 
