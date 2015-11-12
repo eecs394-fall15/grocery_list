@@ -1,13 +1,13 @@
 angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
-  var currentListID = 1;
+  $scope.currentListID = 1;
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.equalTo("item_status","O");
-    imgQuery.equalTo("list_id",currentListID);
+    imgQuery.equalTo("list_id",$scope.currentListID);
 
     imgQuery.find({
       success: function(results) {
@@ -44,7 +44,7 @@ angular
     var prevClass= Parse.Object.extend("ImageData");
     var prevQuery = new Parse.Query(prevClass);
     prevQuery.equalTo("item_status","P");
-    prevQuery.equalTo("list_id",currentListID);
+    prevQuery.equalTo("list_id",$scope.currentListID);
 
     prevQuery.find({
       success: function(results1) {
@@ -181,13 +181,13 @@ angular
 
     //The function that is called when the list is changed in the sidebar
     supersonic.data.channel('changeList').subscribe(function(listID){
-      currentListID = listID;
+      $scope.currentListID = listID;
       $scope.current();
       $scope.previous();
       supersonic.logger.log('Now display list ' + listID);
     });
 
     $scope.openSidebar = function(){
-       supersonic.ui.drawers.open('left');
-     };
-  });
+     supersonic.ui.drawers.open('left');
+   };
+ });

@@ -4,7 +4,14 @@
   });
 </script>
 <ul class="list" ng-controller='DrawerController'>
-	<li class="item" >Home</li>
-	<li class="item" ng-click="changeList(1)">List 1</li>
-	<li class="item" ng-click="changeList(2)">List 2</li>
+	<li class="item" ng-click="changeList(1)">Grocery List</li>
+	<li class="item" ng-click="changeList(2)">Christmas Gifts</li>
+	<li class="item" ng-click="changeList(3)">Office</li>
 </ul>
+
+ <!-- <div class="list" ng-repeat="g in groups">
+    <a class = "item" ng-click = "openSettings(g.id)">
+      <h2 >{{g.group_name}}</h2>
+    </a>
+  </div>
+ -->
