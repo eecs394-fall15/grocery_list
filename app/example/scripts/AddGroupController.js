@@ -12,15 +12,15 @@
 
 			supersonic.logger.log("inside create");
 			
-				var group_ID = parseInt(groupNum);
+			var group_ID = parseInt(groupNum);
 
-		
-supersonic.logger.log("inside create");
-supersonic.logger.log(group.gname);
-supersonic.logger.log(group.group_ID);
+
+
+
 			groupobj.set("group_name",group.gname);
 			groupobj.set("group_ID",group_ID);
-
+			window.localStorage.setItem("group_id",group_ID);
+			window.localStorage.setItem("group_name",group.gname);
 			groupobj.save(null,{
 				success: function(results) {
                 var modalView = new supersonic.ui.View("example#add_member");
