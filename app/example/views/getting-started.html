@@ -3,13 +3,13 @@
 
   <super-navbar>
     <super-navbar-title>
-      My Groceries
+      Shopping List<!-- {{header}} -->
     </super-navbar-title>
     <super-navbar-button ng-click="openSidebar()">
-      Set List
+      Choose List
     </super-navbar-button>
   </super-navbar>
- <div class="item item-divider">My Groceries</div>
+ <div class="item item-divider">Need to Buy</div>
  <div class="list" ng-repeat="item in resultImages">
     <a  id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
       <img ng-src = "{{item.photo}}">
@@ -20,7 +20,7 @@
       <button class="button button-assertive super-close-round" style="border-radius:10px; " ng-click="close(item.id)"> </button>
     </a>
   </div>
-  <div class="item item-divider">Previous Groceries</div>
+  <div class="item item-divider">Have Bought Before</div>
   <div class="list" ng-repeat="item1 in resultImages1">
     <a  id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)">
       <img ng-src = "{{item1.photo}}">
