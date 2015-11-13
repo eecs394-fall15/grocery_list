@@ -53,11 +53,11 @@ angular
 
 	$scope.openSettings = function(id) {
 
-		// var modalView = new supersonic.ui.View("example#team-settings");
-		// var options = {
-		// 	animate: true
-		// };
-		// supersonic.ui.layers.push(modalView, options);
+		 var modalView = new supersonic.ui.View("example#people");
+		 var options = {
+		 	animate: true
+		 };
+		 supersonic.ui.layers.push(modalView, options);
 		
 		var groupDetails = Parse.Object.extend("Group_Details");
 		var groupDetailsQuery = new Parse.Query(groupDetails);
