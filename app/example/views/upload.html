@@ -5,6 +5,10 @@
             Upload Item
         </super-navbar-title>
     </super-navbar>
+
+
+
+
     <div class="item item-body">
         <img ng-if="defaultImage" class="full-image" src="{{image}}" >
         <img id="showImage" ng-if="!defaultImage" class="full-image" src="data:image/png;base64,{{image}}" >
@@ -15,6 +19,10 @@
     <br>
 
     <form name="myform">
+          <div style="text-align: center ;">
+            <button align="center"class="button button-positive" ng-click="submitImage(groceryItem)" style="width:100%">Submit</button>
+        </div>
+        <br>
         <label class="item item-input">
             <input id ="item_name" ng-model="groceryItem.name" name="item_name" type="text" placeholder="Item Name" />
         </label>
@@ -36,33 +44,11 @@
             </select>
         </label>
 
-        <label class="item item-input item-select">
-            <div class="input-label" >
-              Unit
-            </div>
-            <select id = "item_unit" ng-model="groceryItem.unit" >
-                <option value="unit(s)">unit(s)</option>
-                <option value="piece(s) ">piece(s)</option>
-                <option value="pack(s)">pack(s)</option>
-                <option value="bag(s)">bag(s)</option>
-                <option value="box(es)">box(es)</option>
-                <option value="carton(s)">carton(s)</option>
-                <option value="sack(s)">sack(s)</option>
-                <option value="bottle(s)">bottle(s)</option>
-                <option value="liter(s)">liter(s)</option>
-                <option value="pint(s)">pint(s)</option>
-                <option value="quart(s)">quart(s)</option>
-                <option value="gallon(s)">gallon(s)</option>
-
-            </select>
-        </label>
         <label class="item item-input">
             <textarea id = "item_info" ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
         </label>
         <br>
-        <div style="text-align: center ;">
-            <button align="center"class="button button-dark" ng-click="submitImage(groceryItem)" style="width:100%">Submit</button>
-        </div>
+      
     </form>
     <div>
         <p>
