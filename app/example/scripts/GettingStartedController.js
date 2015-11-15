@@ -61,11 +61,11 @@ angular
           newImage1.unit = object.get("item_unit");
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
-          supersonic.logger.log(newImage1.id);
+        
           var image = object.get("itemImage");
           newImage1.photo = image.url();
           $scope.resultImages1.push(newImage1);
-          supersonic.logger.log($scope.resultImages1[i]);
+         
 
         }
       },
@@ -142,7 +142,7 @@ angular
     updateQuery.save(null,{
       success: function(updateQuery) {
 
-        supersonic.logger.log("saved successfully");
+       
         $scope.previous();
         $scope.current();
 
@@ -190,4 +190,6 @@ angular
     $scope.openSidebar = function(){
      supersonic.ui.drawers.open('left');
    };
+   
+
  });

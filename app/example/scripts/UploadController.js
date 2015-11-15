@@ -5,38 +5,40 @@ angular
             destinationType: "dataURL",
             quality: 40,
         };
+        supersonic.ui.tabs.whenDidChange(function()
+        {
+            $scope.isOpen = true;
+        });
+        $scope.isOpen = true;
+            var stopListening  = supersonic.ui.views.current.whenVisible(function(){ 
+            if($scope.isOpen)         
+              {supersonic.media.camera.takePicture(cameraOptions).then( function(result){
+              
+                $scope.image = result;
+                $scope.defaultImage = false;  
+                        
+            }); 
+          }
+            //stopListening();  
+            $scope.isOpen = false;        
+      });
+
+          // var stopListening = supersonic.ui.views.current.whenHidden(function()
+          // {
+          //   stopListening();
+          // });
         // var cameraDataURL = "http://localhost/images/camera.jpg";
        // var defaultDataURL = "http://localhost/images/default.jpg";
 
         $scope.groceryItem = { onList : true}; 
         $scope.image="/placeholder.png";
         $scope.defaultImage = true;
-
         $scope.takePicture = function(input_type) {
 
-supersonic.logger.log(input_type);
+        supersonic.logger.log(input_type);
             if(input_type==1)
             {
-                supersonic.logger.log("inside camera");
-            supersonic.media.camera.takePicture(cameraOptions).then( function(result){
-                //save image dataURL into dataURL
-                //change the image on the new.html to the one taken
-                $scope.image = result;
-                 $scope.defaultImage = false;
-               
-            });
-        }
-        if(input_type==2)
-
-        {
-    supersonic.logger.log("inside photo library");
-
-   supersonic.media.camera.getFromPhotoLibrary(cameraOptions).then( function(result){
-
-                 $scope.image = result;
-                  $scope.defaultImage = false;
-            });
-
+          
         }
 
 
@@ -115,7 +117,6 @@ img.set("item_name", groceryItem.name);
 
  
 }
-
 
 
     });
