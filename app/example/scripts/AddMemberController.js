@@ -31,12 +31,12 @@ function pick_fail(err){
 $scope.submitmembers = function()
 {
 
-angular.forEach($scope.groupArray,function(item)
-{
-groupobj.set("User_Name",item.givenname);
-groupobj.set("Phone_Number",item.phone);
-groupobj.set("Group_ID",groupID);
-groupobj.set("Group_Name",groupName);
+		angular.forEach($scope.groupArray,function(item)
+		{
+		groupobj.set("User_Name",item.givenname);
+		groupobj.set("Phone_Number",item.phone);
+		groupobj.set("Group_ID",groupID);
+		groupobj.set("Group_Name",groupName);
 
 		groupobj.save(null,{
 				success: function(results) {
@@ -48,6 +48,12 @@ groupobj.set("Group_Name",groupName);
 				
 				}
 			});
+
+		var modalView = new supersonic.ui.View("example#addgroup");
+			var options = {
+				animate: true
+			};
+			supersonic.ui.modal.hide();
 
 });
 

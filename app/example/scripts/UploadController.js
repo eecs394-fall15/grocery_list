@@ -105,6 +105,16 @@ img.set("item_name", groceryItem.name);
         success: function(Img) {
           // Execute any logic that should take place after the object is saved.
           supersonic.ui.dialog.alert('Submitted Successfully!');
+            var image = document.getElementById('showImage');
+            image.src = "/placeholder.png";
+            var item_name = document.getElementById('item_name');
+            item_name.value ="";
+            var item_quantity = document.getElementById('item_quantity');
+            item_quantity.value = 0;
+            var item_unit = document.getElementById('item_unit');
+            item_unit.value ="";
+            var item_info = document.getElementById('item_info');
+            item_info.value ="";
         },
         error: function(Img, error) {
           // Execute any logic that should take place if the save fails.
