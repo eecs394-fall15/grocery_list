@@ -53,14 +53,26 @@ error: function(error) {
 
 	$scope.openSettings = function(id) {
 
-		supersonic.data.channel('peopleFromList').publish(id);
-		supersonic.logger.log("Logging here");
-		supersonic.logger.log(id);
+		/*supersonic.ui.views.start("example#people").then( function(id) {
+		  // The id is "cars#show"
+		  supersonic.data.channel('peopleFromList').publish(id);
+		  supersonic.logger.log("Logging here");
+		  supersonic.logger.log(id);
+		});*/
+
+		//localStorage.setItem(‘peopleFromGRoup’, JSON.stringify(id));
+
+
 
 		var modalView = new supersonic.ui.View("example#people");
+		modalView.start();
 		var options = {
 			animate: true
 		};
+
+		supersonic.data.channel('peopleFromList').publish(id);
+		supersonic.logger.log(id);
+
 		supersonic.ui.layers.push(modalView, options);
 		
 		/*var groupDetails = Parse.Object.extend("Group_Details");
@@ -89,7 +101,7 @@ error: function(error) {
 
 
 		//Find all people details
-	}
+	};
 
 	$scope.forward=function()
 	{
@@ -102,7 +114,7 @@ error: function(error) {
 		supersonic.ui.modal.show(modalView, options);
 
 
-	}
+	};
 
 
 
