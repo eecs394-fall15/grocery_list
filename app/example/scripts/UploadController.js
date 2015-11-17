@@ -1,6 +1,8 @@
 angular
     .module('example')
-    .controller('UpdateController', function($scope, supersonic) {
+    .controller('UpdateController', function($scope, supersonic,$location, $anchorScroll) {
+
+      $scope.custom=true;
         var cameraOptions = {
             destinationType: "dataURL",
             quality: 40,
@@ -8,6 +10,7 @@ angular
         supersonic.ui.tabs.whenDidChange(function()
         {
             $scope.isOpen = true;
+            $scope.custom= true;
         });
         $scope.isOpen = true;
             var stopListening  = supersonic.ui.views.current.whenVisible(function(){ 
@@ -23,10 +26,7 @@ angular
             $scope.isOpen = false;        
       });
 
-          // var stopListening = supersonic.ui.views.current.whenHidden(function()
-          // {
-          //   stopListening();
-          // });
+
         // var cameraDataURL = "http://localhost/images/camera.jpg";
        // var defaultDataURL = "http://localhost/images/default.jpg";
 
@@ -35,42 +35,25 @@ angular
         $scope.defaultImage = true;
         $scope.takePicture = function(input_type) {
 
-        supersonic.logger.log(input_type);
-            if(input_type==1)
-            {
-          
-        }
-
-
         };
-       
 
-        $scope.submitItem = function()  {
+    $scope.toggleCustom = function() {
+            $scope.custom = $scope.custom === false ? true: false;
+             
 
-            // var image = document.getElementById('showImage');
-            // image.src ="/placeholder.png"
-            supersonic.data.channel('addListItem').publish($scope.groceryItem);
-            var instructions = {
-                message: "Item Submitted!",
-                buttonLabel: "Done!"
-            };
-            var image = document.getElementById('showImage');
-            image.src = "/placeholder.png";
-            var item_name = document.getElementById('item_name');
-            item_name.value ="";
-            var item_quantity = document.getElementById('item_quantity');
-            item_quantity.value = 0;
-            var item_unit = document.getElementById('item_unit');
-            item_unit.value ="";
-            var item_info = document.getElementById('item_info');
-            item_info.value ="";
+        // call $anchorScroll()
+        if($scope.custom)
+        {
+           $location.hash('bottom');
+        $anchorScroll();
+      } else
+      {
 
-
-
-            supersonic.ui.dialog.alert("Success", instructions).then(function() {
-
-            });
+ $location.hash('top');
+ $anchorScroll();
+      }
         };
+
 
 $scope.currentListID;
 supersonic.data.channel('changeList').subscribe(function(listID){
@@ -80,25 +63,25 @@ supersonic.data.channel('changeList').subscribe(function(listID){
       supersonic.logger.log('Now display list ' + listID);
     });
 $scope.submitImage = function(groceryItem) {
-
+supersonic.logger.log("inside submit");
 var  ImageClass= Parse.Object.extend("ImageData");
             var img = new ImageClass();
-            var file = new Parse.File("item_image.png", { base64: $scope.image });
-
+           
 var status="O";
 img.set("item_name", groceryItem.name);
-      img.set("item_quantity", groceryItem.quantity);
-      img.set("item_unit", groceryItem.unit);
-      img.set("item_info", groceryItem.info);
+/*if(groceryItem.quantity.toString()=="")
+{
+   groceryItem.quantity=0;
+}*/
+//supersonic.logger.log("grocery"+grocery.quantity.toString());
+ img.set("item_quantity", groceryItem.quantity);
+    img.set("item_info", groceryItem.info);
     img.set("item_status", status);
     img.set("list_id", $scope.currentListID)
-       file.save().then(function() {
-       
-       
-      }, function(error) {
-    
-      });
+     var file = new Parse.File("item_image.png", { base64: $scope.image });
 
+       file.save().then(function(result) {
+       supersonic.logger.log("inside file save:");
        img.set('itemImage', file);
 
          img.save(null, {
@@ -111,20 +94,20 @@ img.set("item_name", groceryItem.name);
             item_name.value ="";
             var item_quantity = document.getElementById('item_quantity');
             item_quantity.value = 0;
-            var item_unit = document.getElementById('item_unit');
-            item_unit.value ="";
             var item_info = document.getElementById('item_info');
             item_info.value ="";
-        },
+         },
         error: function(Img, error) {
           // Execute any logic that should take place if the save fails.
           // error is a Parse.Error with an error code and message.
-          supersonic.ui.dialog.alert('Sorry, there was a problem.');
+          supersonic.ui.dialog.alert('Sorry, there was a problem.' + error.message);
         }
 
       });
-
-
+      }, function(error) {
+            supersonic.logger.log(error.message);
+      });
+//supersonic.logger.log(file);
  
 }
 
