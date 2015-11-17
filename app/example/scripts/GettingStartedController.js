@@ -81,6 +81,7 @@ angular
           newImage1.unit = object.get("item_unit");
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
+          newImage1.status = object.get("item_status");
 
           var image = object.get("itemImage");
           newImage1.photo = image.url();
