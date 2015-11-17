@@ -169,6 +169,7 @@ angular
       success: function(updateQuery) {
         $scope.refreshData();
 
+
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -204,7 +205,7 @@ angular
     supersonic.data.channel('changeList').subscribe(function(listID){
       $scope.currentListID = listID;
       $scope.header = $scope.listNames[$scope.currentListID-1];
-      $scope.$apply();
+      //$scope.$apply();
       $scope.refreshData();
       supersonic.logger.log('Now display list ' + listID);
     });
@@ -227,13 +228,14 @@ angular
 
           object.set("item_status", "C");
           object.save();
+          $scope.current();
 
         },
         error: function(error) {
           alert("Error: " + error.code + " " + error.message);
         }
       });
-      $scope.current();
+      
 
   };
 
