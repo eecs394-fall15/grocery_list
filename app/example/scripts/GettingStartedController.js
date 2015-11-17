@@ -1,6 +1,8 @@
 angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
+
+
  
   $scope.current= function() {
     $scope.resultImages = [];
@@ -35,6 +37,7 @@ angular
           $scope.resultImages.push(newImage);
 
         }
+        $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -76,6 +79,7 @@ angular
          
 
         }
+        $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -142,6 +146,21 @@ angular
 
   $scope.close = function(itemID) {
 
+    var imageClass = Parse.Object.extend("ImageData");
+    var imgQuery = new Parse.Query(imageClass);
+    imgQuery.equalTo("objectId", id);
+    imgQuery.first({
+      success: function(object) {
+
+        object.set("item_status", "bought");
+        object.save();
+
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });
+
     var  UpdateClass= Parse.Object.extend("ImageData");
     var status="P";
     var updateQuery = new UpdateClass();
@@ -198,6 +217,25 @@ angular
     $scope.openSidebar = function(){
      supersonic.ui.drawers.open('left');
    };
+
+     $scope.commit = function(id) {
+
+      var imageClass = Parse.Object.extend("ImageData");
+      var imgQuery = new Parse.Query(imageClass);
+      imgQuery.equalTo("objectId", id);
+      imgQuery.first({
+        success: function(object) {
+
+          object.set("item_status", "committed");
+          object.save();
+
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
+
+  };
    
 
  });

@@ -11,13 +11,17 @@
   </super-navbar>
  <div class="item item-divider">Need to Buy</div>
  <div class="list" ng-repeat="item in resultImages">
-    <a  id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
-      <img ng-src = "{{item.photo}}">
+    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
 
+      <img ng-src = "{{item.photo}}">
       <h2 >{{item.name}}</h2>
       <p >Quantity: {{item.quantity}} {{item.unit}}</p>
       <p >Description: {{item.info}}</p>
-      <button class="button button-assertive super-close-round" style="border-radius:10px; " ng-click="close(item.id)"> </button>
+      <p> Neha committed at 5:00 PM </p>
+      <div>
+      <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Commit </button>
+      <button class="button button-assertive" style="border-radius:10px; " ng-click="close(item.id)"> Buy </button>
+      </div>
     </a>
   </div>
   <div class="item item-divider">Have Bought Before</div>
@@ -29,6 +33,7 @@
       <p >Quantity: {{item1.quantity}} {{item1.unit}}</p>
       <p >Description: {{item1.info}}</p>
       <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-click="open(item1.id)"> </button>
+
     </a>
   </div>
 
