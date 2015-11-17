@@ -6,7 +6,7 @@
       Shopping List
     </super-navbar-title>
   </super-navbar>
- <div class="item item-divider">Need to Buy</div>
+ <div class="item item-divider">Need to Buy</div> 
  <div class="list" ng-repeat="item in resultImages">
     <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
 
@@ -14,7 +14,8 @@
       <h2 >{{item.name}}</h2>
       <p >Quantity: {{item.quantity}} {{item.unit}}</p>
       <p >Description: {{item.info}}</p>
-      <p> {{makeStatusString(item.status, item.time)}} </p>
+      <p> {{makeStatusString(item.status, item.time)}}</p>
+      <p>{{item.time | date:'short'}} </p>
       <div>
       <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Commit </button>
       <button class="button button-assertive" style="border-radius:10px; " ng-click="close(item.id)"> Buy </button>
@@ -30,6 +31,7 @@
       <p >Quantity: {{item1.quantity}} {{item1.unit}}</p>
       <p >Description: {{item1.info}}</p>
       <p> {{makeStatusString(item1.status, item1.time)}} </p>
+      <p>{{item1.time | date:'short'}} </p>
       <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-click="open(item1.id)"> </button>
 
     </a>

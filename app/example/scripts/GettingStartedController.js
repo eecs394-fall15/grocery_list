@@ -12,17 +12,17 @@ angular
 
   $scope.state = "NORMAL";
 
-  $scope.makeStatusString = function(status) {
+  $scope.makeStatusString = function(status, time) {
 
     switch(status) {
       case "O":
-        return "Open";
+        return "Added to list";
         break;
       case "P":
-        return "Bought by Mike at ";
+        return "Bought by Mike";
         break;
       case "C":
-        return "Committed by Mike at ";
+        return "Committed by Mike";
         break;
       default:
         return status;
