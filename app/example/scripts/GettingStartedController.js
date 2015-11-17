@@ -1,17 +1,13 @@
 angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
- 
+
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.equalTo("item_status","O");
     imgQuery.equalTo("list_id",$scope.currentListID);
-
-
-  
-  
 
     imgQuery.find({
       success: function(results) {
@@ -35,6 +31,7 @@ angular
           $scope.resultImages.push(newImage);
 
         }
+        $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -69,13 +66,14 @@ angular
           newImage1.unit = object.get("item_unit");
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
-        
+
           var image = object.get("itemImage");
           newImage1.photo = image.url();
           $scope.resultImages1.push(newImage1);
-         
+
 
         }
+        $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -150,7 +148,7 @@ angular
     updateQuery.save(null,{
       success: function(updateQuery) {
 
-       
+
         $scope.previous();
         $scope.current();
 
@@ -198,6 +196,6 @@ angular
     $scope.openSidebar = function(){
      supersonic.ui.drawers.open('left');
    };
-   
+
 
  });
