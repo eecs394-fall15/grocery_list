@@ -14,11 +14,11 @@
       <h2 >{{item.name}}</h2>
       <p >Quantity: {{item.quantity}} {{item.unit}}</p>
       <p >Description: {{item.info}}</p>
-      <p> {{makeStatusString(item.status, item.time)}}</p>
-      <p>{{item.time | date:'short'}} </p>
+      <p><b> {{makeStatusString(item.status, item.time)}}</b></p>
+      <p><b>{{item.time | date:'short'}}</b> </p>
       <div>
       <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Commit </button>
-      <button class="button button-assertive" style="border-radius:10px; " ng-click="close(item.id)"> Bought </button>
+      <button class="button button-balanced" style="border-radius:10px; " ng-click="close(item.id)"> Bought </button>
       </div>
     </a>
   </div>
@@ -30,8 +30,8 @@
       <h2 >{{item1.name}}</h2>
       <p >Quantity: {{item1.quantity}} {{item1.unit}}</p>
       <p >Description: {{item1.info}}</p>
-      <p> {{makeStatusString(item1.status, item1.time)}} </p>
-      <p>{{item1.time | date:'short'}} </p>
+      <p><b> {{makeStatusString(item1.status, item1.time)}}</b></p>
+      <p><b>{{item1.time | date:'short'}}</b> </p>
       <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-click="open(item1.id)"> </button>
 
     </a>
