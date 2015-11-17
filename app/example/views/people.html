@@ -1,1 +1,26 @@
-<h2> More information on this group will be located here<h2>
+<div class="padding" ng-controller="PeopleController">
+
+  <super-navbar>
+    <super-navbar-title>
+      People
+    </super-navbar-title>
+  </super-navbar>
+
+
+ 
+  <div class="list" ng-repeat="g in groups">
+    <a class = "item" ng-click = "openSettings(g.id)">
+      <h2 >{{g.group_name}}</h2>
+    </a>
+  </div> 
+
+<center><button ng-click="forward()" class="button  button-calm" style = "width: 50%; border-radius:15px;"
+        >Add New Group</button></center>
+
+
+
+
+
+
+
+</div>

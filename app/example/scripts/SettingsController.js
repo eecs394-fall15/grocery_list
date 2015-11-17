@@ -2,7 +2,7 @@ angular
 .module('example')
 .controller('SettingsController', function($scope, supersonic) {
 	$scope.changeList = function(listID) {
-		supersonic.data.channel('changeList').publish(listID);
+
 	};
 
 	$scope.groups = [];
@@ -45,21 +45,37 @@ angular
 			// 		supersonic.ui.dialog.alert('Not Working!!');
 			// 	}
 			// });
-		},
-		error: function(error) {
-			supersonic.ui.dialog.alert('Not Working!!');
-		},
-	});
+},
+error: function(error) {
+	supersonic.ui.dialog.alert('Not Working!!');
+},
+});
 
 	$scope.openSettings = function(id) {
 
-		 var modalView = new supersonic.ui.View("example#people");
-		 var options = {
-		 	animate: true
-		 };
-		 supersonic.ui.layers.push(modalView, options);
+		/*supersonic.ui.views.start("example#people").then( function(id) {
+		  // The id is "cars#show"
+		  supersonic.data.channel('peopleFromList').publish(id);
+		  supersonic.logger.log("Logging here");
+		  supersonic.logger.log(id);
+		});*/
+
+		//localStorage.setItem(‘peopleFromGRoup’, JSON.stringify(id));
+
+
+
+		var modalView = new supersonic.ui.View("example#people");
+		modalView.start();
+		var options = {
+			animate: true
+		};
+
+		supersonic.data.channel('peopleFromList').publish(id);
+		supersonic.logger.log(id);
+
+		supersonic.ui.layers.push(modalView, options);
 		
-		var groupDetails = Parse.Object.extend("Group_Details");
+		/*var groupDetails = Parse.Object.extend("Group_Details");
 		var groupDetailsQuery = new Parse.Query(groupDetails);
 		groupDetailsQuery.equalTo("group_ID",id);
 
@@ -80,28 +96,30 @@ angular
 				supersonic.ui.dialog.alert('Not Working!!');
 			},
 
-		});
+		});*/
 
 
 
 		//Find all people details
-	}
+	};
 
-$scope.forward=function()
-{
+	$scope.forward=function()
+	{
 
-var modalView = new supersonic.ui.View("example#addgroup");
-var options = {
-  animate: true
-}
+		var modalView = new supersonic.ui.View("example#addgroup");
+		var options = {
+			animate: true
+		}
 
-supersonic.ui.modal.show(modalView, options);
-
-
-}
+		supersonic.ui.modal.show(modalView, options);
 
 
+	};
 
-  });
+
+
+
+
+});
 
 

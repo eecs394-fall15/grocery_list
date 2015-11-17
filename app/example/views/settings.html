@@ -9,9 +9,14 @@
 
  
   <div class="list" ng-repeat="g in groups">
-    <a class = "item" ng-click = "openSettings(g.id)">
+  <a class = "item" ng-click = "openSettings(g.ID)" >
+    <div style="float:left;">
       <h2 >{{g.group_name}}</h2>
-    </a>
+    </div>     
+    <div style="float:right;">
+             <i class="icon super-chevron-right"></i>
+    </div>
+  </a>
   </div> 
 
 <center><button ng-click="forward()" class="button  button-calm" style = "width: 50%; border-radius:15px;"
