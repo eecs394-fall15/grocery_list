@@ -3,6 +3,9 @@ angular
 .controller('GettingStartedController', function($scope, supersonic) {
 
 
+<<<<<<< HEAD
+ 
+=======
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
@@ -12,6 +15,7 @@ angular
 
   $scope.state = "NORMAL";
 
+>>>>>>> origin/dev
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
@@ -223,6 +227,7 @@ angular
      supersonic.ui.drawers.open('left');
    };
 
+<<<<<<< HEAD
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
@@ -242,6 +247,7 @@ angular
 
   };
    
-
+=======
+>>>>>>> origin/dev
 
  });
