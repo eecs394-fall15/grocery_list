@@ -28,12 +28,20 @@ angular
 
           var object = results[i];
           var newImage = {};
+
+          var status ="";
+
           newImage.name = object.get("item_name");
 
           newImage.quantity = object.get("item_quantity");
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
+
+          newImage.status = object.get("item_status");
+
+
+
           supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
@@ -224,6 +232,7 @@ angular
           alert("Error: " + error.code + " " + error.message);
         }
       });
+      $scope.current();
 
   };
    
