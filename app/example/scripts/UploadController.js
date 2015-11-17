@@ -85,7 +85,7 @@ file.save().then(function(result) {
  img.save(null, {
   success: function(Img) {
           // Execute any logic that should take place after the object is saved.
-          supersonic.ui.dialog.alert('Submitted Successfully!');
+
           var image = document.getElementById('showImage');
           image.src = "/placeholder.png";
           var item_name = document.getElementById('item_name');
@@ -94,6 +94,10 @@ file.save().then(function(result) {
           item_quantity.value = 0;
           var item_info = document.getElementById('item_info');
           item_info.value ="";
+          supersonic.ui.dialog.alert('Submitted Successfully!').then(function(){
+            supersonic.data.channel('refreshData').publish(true);
+            supersonic.ui.tabs.select(0);
+          });
         },
         error: function(Img, error) {
           // Execute any logic that should take place if the save fails.

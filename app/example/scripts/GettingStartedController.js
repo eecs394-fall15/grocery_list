@@ -96,8 +96,12 @@ angular
     });
   };
 
-  $scope.current();
-  $scope.previous();
+  $scope.refreshData = function(){
+    $scope.current();
+    $scope.previous();
+  };
+
+  $scope.refreshData();
 
 
 
@@ -116,8 +120,7 @@ angular
     if(event.target.tab.index === 0){
       $scope.openSidebar();
     }
-    $scope.current();
-    $scope.previous();
+    $scope.refreshData();
   });
 
 
@@ -142,10 +145,7 @@ angular
       success: function(updateQuery) {
 
         supersonic.logger.log("saved successfully");
-        $scope.current();
-        $scope.previous();
-
-
+        $scope.refreshData();
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -166,10 +166,7 @@ angular
     updateQuery.set("item_status",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
-
-
-        $scope.previous();
-        $scope.current();
+        $scope.refreshData();
 
       },
       error: function(updateQuery,error) {
@@ -207,9 +204,12 @@ angular
       $scope.currentListID = listID;
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
-      $scope.current();
-      $scope.previous();
+      $scope.refreshData();
       supersonic.logger.log('Now display list ' + listID);
+    });
+
+    supersonic.data.channel('refreshData').subscribe(function(bool){
+      $scope.refreshData();
     });
 
     $scope.openSidebar = function(){
@@ -235,7 +235,9 @@ angular
       $scope.current();
 
   };
-   
+
+
+
 
 
  });
