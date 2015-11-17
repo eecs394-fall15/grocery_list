@@ -2,6 +2,16 @@ angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
 
+
+  $scope.listNames = ["Grocery List","Christmas List","Office"];
+  $scope.currentListID = 1;
+  $scope.header = $scope.listNames[$scope.currentListID-1];
+
+  $scope.navbarTitle = "Groceries";
+  $scope.swipeID = -1;
+
+  $scope.state = "NORMAL";
+
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
@@ -39,9 +49,6 @@ angular
     });
   };
 
-  $scope.listNames = ["Grocery List","Christmas List","Office"];
-  $scope.currentListID = 1;
-  $scope.header = $scope.listNames[$scope.currentListID-1];
 
 
   $scope.previous= function() {
@@ -81,22 +88,26 @@ angular
     });
   };
 
+  $scope.current();
+  $scope.previous();
 
-  $scope.navbarTitle = "Groceries";
-  $scope.swipeID = -1;
+
+
+
+
   $scope.isSwipeID = function(id) {
     if (swipeID == id) {
       return true;
     }
     return false;
-  }
-  $scope.state = "NORMAL";
+  };
 
-  $scope.current();
-  $scope.previous();
 
-  supersonic.ui.tabs.whenDidChange( function() {
 
+  supersonic.ui.tabs.whenDidChange( function(event) {
+    if(event.target.tab.index === 0){
+      $scope.openSidebar();
+    }
     $scope.current();
     $scope.previous();
   });
@@ -109,7 +120,7 @@ angular
     supersonic.logger.log("delete clicked, id = " + id);
 
 
-  }
+  };
 
   $scope.open = function(itemID) {
 
@@ -134,7 +145,7 @@ angular
     });
 
 
-  }
+  };
 
 
 
@@ -160,24 +171,24 @@ angular
 
 
 
-  }
+  };
 
   $scope.postpone = function(id) {
     supersonic.logger.log("postpone clicked, id = " + id);
     swipeID = -1;
 
-  }
+  };
   $scope.swipeLeft = function(id) {
     state = "DELETE";
     supersonic.logger.log("swiped left, id = " + id);
     swipeID = id;
 
-  }
+  };
   $scope.swipeRight = function(id) {
     state = "POSTPONE";
     supersonic.logger.log("swiped right, id = " + id);
     swipeID = id;
-  }
+  };
   supersonic.data.channel('addListItem').subscribe(function(newItem) {
     $scope.groceryItems.push(newItem);
     $scope.$apply();
