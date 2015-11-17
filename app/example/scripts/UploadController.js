@@ -3,6 +3,7 @@ angular
 .controller('UpdateController', function($scope, supersonic,$location, $anchorScroll) {
 
   $scope.custom=true;
+  $scope.submittingImage = false;
   var cameraOptions = {
     destinationType: "dataURL",
     quality: 40,
@@ -61,6 +62,7 @@ angular
       supersonic.logger.log('Now display list ' + listID);
     });
      $scope.submitImage = function(groceryItem) {
+      $scope.submittingImage = true;
       supersonic.logger.log("inside submit");
       var  ImageClass= Parse.Object.extend("ImageData");
       var img = new ImageClass();
@@ -85,7 +87,7 @@ file.save().then(function(result) {
  img.save(null, {
   success: function(Img) {
           // Execute any logic that should take place after the object is saved.
-
+          $scope.submittingImage = false;
           var image = document.getElementById('showImage');
           image.src = "/placeholder.png";
           var item_name = document.getElementById('item_name');
@@ -111,7 +113,7 @@ file.save().then(function(result) {
 });
 //supersonic.logger.log(file);
 
-}
+};
 
 
 });

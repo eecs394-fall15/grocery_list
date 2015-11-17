@@ -18,15 +18,15 @@
 -           <button class="button icon-center super-folder button-calm" id="uploadimage1" ng-click="takePicture(2)" style="width:49%;"></button>
         </div> -->
     </div>
-   
+
 
     <form name="myform">
           <div style="text-align: center ;">
-            <button align="center" class="button button-full button-balanced" style="border-radius: 10px" ng-click="submitImage(groceryItem)" style="width:100%">Submit</button>
+            <button align="center" class="button button-full button-balanced" style="border-radius: 10px" ng-click="submitImage(groceryItem)" style="width:100%" ng-disabled="submittingImage">Submit</button>
         </div>
-       
+
         <div style="text-align: center ;">
-            <button align="center" id="top" class="button button-full button-positive" style="border-radius: 10px" ng-click="toggleCustom()" style="width:100%" >Add Additional Info(if needed)</button>
+            <button align="center" id="top"  class="button button-full button-positive" style="border-radius: 10px" ng-click="toggleCustom()" style="width:100%" >Add Additional Info(if needed)</button>
         </div>
 
 <span id="bottom" ng-hide="custom" >
@@ -40,7 +40,7 @@
         <label class="item item-input">
             <textarea id = "item_info" ng-model="groceryItem.info" placeholder="Additional Info"></textarea>
         </label>
- </span >     
+ </span >
        <span ng-show="custom"></span>
     </form>
     <div>
