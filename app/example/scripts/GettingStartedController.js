@@ -12,6 +12,24 @@ angular
 
   $scope.state = "NORMAL";
 
+  $scope.makeStatusString = function(status) {
+
+    switch(status) {
+      case "O":
+        return "Open";
+        break;
+      case "P":
+        return "Bought by Mike at ";
+        break;
+      case "C":
+        return "Committed by Mike at ";
+        break;
+      default:
+        return status;
+    }
+
+  };
+
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
@@ -37,6 +55,8 @@ angular
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
+
+          newImage.time = object.get("updatedAt");
 
           newImage.status = object.get("item_status");
 
@@ -82,6 +102,7 @@ angular
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
           newImage1.status = object.get("item_status");
+          newImage1.time = object.get("updatedAt");
 
           var image = object.get("itemImage");
           newImage1.photo = image.url();
