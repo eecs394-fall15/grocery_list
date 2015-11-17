@@ -151,21 +151,6 @@ angular
 
   $scope.close = function(itemID) {
 
-    var imageClass = Parse.Object.extend("ImageData");
-    var imgQuery = new Parse.Query(imageClass);
-    imgQuery.equalTo("objectId", id);
-    imgQuery.first({
-      success: function(object) {
-
-        object.set("item_status", "bought");
-        object.save();
-
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-
     var  UpdateClass= Parse.Object.extend("ImageData");
     var status="P";
     var updateQuery = new UpdateClass();
@@ -231,7 +216,7 @@ angular
       imgQuery.first({
         success: function(object) {
 
-          object.set("item_status", "committed");
+          object.set("item_status", "C");
           object.save();
 
         },
