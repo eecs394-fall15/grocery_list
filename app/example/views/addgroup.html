@@ -1,0 +1,29 @@
+<div class="padding" ng-controller="AddGroupController">
+  <super-navbar>
+    <super-navbar-button ng-click="toHome()">
+      Back
+    </super-navbar-button>
+
+    <super-navbar-title>
+      Add Group 
+    </super-navbar-title>
+  </super-navbar>
+
+ <div class="list">
+  <label>
+   <div >
+     Enter Group Name
+    </div>
+  </label>
+  <br>
+
+ <label class="item item-input">
+      <input ng-model="group.gname"  type="text" />
+  </label>
+     
+         <br>
+      
+<center><button ng-click="create(group)" class="button button-calm" style="width: 50%; ;border-radius: 15px"
+        >Create Group</button></center>
+
+</div>

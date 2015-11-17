@@ -1,0 +1,29 @@
+<div class="padding" ng-controller="AddMemberController">
+  <super-navbar>
+   
+    <super-navbar-title>
+      Add Members 
+    </super-navbar-title>
+  
+  </super-navbar>
+
+
+  <ul class="list" ng-repeat="g in groupArray">
+  
+      <li class="item">{{g.givenname}}<br>
+        {{g.phone}}
+      </li>
+    
+  
+  </ul> 
+
+  
+      <center>
+        <button class="button icon super-person-add" ng-click="open()" style=" width : 50% ;border-radius: 10px"> </button>
+      </center>
+<br>
+<br>
+<br>
+<button ng-click="submitmembers()" class="button button-full button-balanced" style="border-radius: 10px"
+        >Done!</button>
+
