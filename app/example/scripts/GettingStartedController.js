@@ -16,7 +16,7 @@ angular
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
-    imgQuery.equalTo("item_status","O");
+    imgQuery.containedIn("item_status",["O", "C"]);
     imgQuery.equalTo("list_id",$scope.currentListID);
 
     imgQuery.find({
@@ -235,9 +235,5 @@ angular
       $scope.current();
 
   };
-
-
-
-
 
  });
