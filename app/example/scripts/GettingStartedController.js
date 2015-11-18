@@ -139,9 +139,6 @@ angular
 
 
   supersonic.ui.tabs.whenDidChange( function(event) {
-    if(event.target.tab.index === 0){
-      $scope.openSidebar();
-    }
     $scope.refreshData();
   });
 
@@ -256,7 +253,7 @@ angular
           alert("Error: " + error.code + " " + error.message);
         }
       });
-      
+
 
   };
 
