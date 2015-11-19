@@ -17,12 +17,12 @@
       <p><b> {{makeStatusString(item.status, item.time)}}</b></p>
       <p><b>{{item.time | date:'short'}}</b> </p>
       <div>
-      <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Commit </button>
-      <button class="button button-balanced" style="border-radius:10px; " ng-click="close(item.id)"> Bought </button>
+      <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Gonna Get! </button>
+      <button class="button button-balanced" style="border-radius:10px; " ng-click="close(item.id)"> Got it! </button>
       </div>
     </a>
   </div>
-  <div class="item item-divider">Have Bought Before</div>
+  <div class="item item-divider">Recently Bought</div>
   <div class="list" ng-repeat="item1 in resultImages1">
     <a  id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)">
       <img ng-src = "{{item1.photo}}">
