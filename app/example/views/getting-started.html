@@ -15,7 +15,7 @@
       <p >Quantity: {{item.quantity}} {{item.unit}}</p>
       <p >Description: {{item.info}}</p>
       <p><b> {{makeStatusString(item.status, item.time)}}</b></p>
-      <p><b>{{item.time | date:'short'}}</b> </p>
+    <!--   <p><b>{{item.time | date:'short'}}</b> </p> -->
       <div>
       <button class="button button-assertive" style="border-radius:10px; " ng-click="commit(item.id)"> Gonna Get! </button>
       <button class="button button-balanced" style="border-radius:10px; " ng-click="close(item.id)"> Got it! </button>
@@ -26,13 +26,16 @@
   <div class="list" ng-repeat="item1 in resultImages1">
     <a  id= "item.id" class="item item-thumbnail-left item-button-right" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)">
       <img ng-src = "{{item1.photo}}">
-
-      <h2 >{{item1.name}}</h2>
+    
+    <!--   <h2 >{{item1.name}}</h2>
       <p >Quantity: {{item1.quantity}} {{item1.unit}}</p>
-      <p >Description: {{item1.info}}</p>
+      <p >Description: {{item1.info}}</p> -->
       <p><b> {{makeStatusString(item1.status, item1.time)}}</b></p>
-      <p><b>{{item1.time | date:'short'}}</b> </p>
-      <button class="button button-balanced super-plus-round" style="border-radius:10px; "  ng-click="open(item1.id)"> </button>
+      <!--  <p><b>{{item1.time | date:'short'}}</b> </p> -->
+      <button class="button button-balanced" style="border-radius:10px;" ng-click="open(item1.id)">
+
+        <font size="2">Buy Again  <font></button>
+    
 
     </a>
   </div>
