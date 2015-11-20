@@ -89,7 +89,6 @@ angular
   };
 
 
-
   $scope.previous= function() {
     $scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("ImageData");
