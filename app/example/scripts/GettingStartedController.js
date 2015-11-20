@@ -6,7 +6,7 @@ angular
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
-
+ $scope.navTitle="Forgot Milk?"
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
@@ -27,7 +27,7 @@ angular
       default:
         return status;
     }
-
+ 
   };
 
   $scope.current= function() {
@@ -230,12 +230,15 @@ angular
   });
 
     //The function that is called when the list is changed in the sidebar
-    supersonic.data.channel('changeList').subscribe(function(listID){
-      $scope.currentListID = listID;
+    supersonic.data.channel('changeList').subscribe(function(g){
+      $scope.currentListID = g.id;
+   
+      $scope.navTitle = g.name;
+      
       $scope.header = $scope.listNames[$scope.currentListID-1];
-      //$scope.$apply();
+      $scope.$apply();
       $scope.refreshData();
-      supersonic.logger.log('Now display list ' + listID);
+    
     });
 
     supersonic.data.channel('refreshData').subscribe(function(bool){

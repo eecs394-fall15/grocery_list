@@ -14,6 +14,7 @@ angular
 	$scope.groups = [];
 
 
+
 	groupDetailsQuery.find({
 		success: function(people){
 			for (var i = 0; i < people.length; i++){
@@ -44,9 +45,12 @@ error: function(error) {
 },
 });
 
-	$scope.changeList = function(listID) {
-		supersonic.data.channel('changeList').publish(listID);
-		$scope.selectedID = listID;
+	$scope.changeList = function(group) {
+			
+		supersonic.data.channel('changeList').publish(group);
+	
+		$scope.selectedID = group.id;
+
 		supersonic.ui.drawers.close();
 		
 	};
