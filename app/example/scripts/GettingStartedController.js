@@ -36,7 +36,7 @@ angular
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.containedIn("item_status",["O", "C"]);
     imgQuery.equalTo("list_id",$scope.currentListID);
-
+    imgQuery.descending("createdAt");
     imgQuery.find({
       success: function(results) {
 
@@ -96,7 +96,7 @@ angular
     var prevQuery = new Parse.Query(prevClass);
     prevQuery.equalTo("item_status","P");
     prevQuery.equalTo("list_id",$scope.currentListID);
-
+    prevQuery.descending("updatedAt");
     prevQuery.find({
       success: function(results1) {
 
