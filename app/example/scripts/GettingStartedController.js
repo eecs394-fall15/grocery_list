@@ -77,6 +77,17 @@ angular
     });
   };
 
+  $scope.showInfo = function(item) {
+    var options = {
+      message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
+      buttonLabel: "Close"
+    };
+
+    supersonic.ui.dialog.alert(item.name, options).then(function() {
+      supersonic.logger.log("Alert closed.");
+    });
+  };
+
 
 
   $scope.previous= function() {
