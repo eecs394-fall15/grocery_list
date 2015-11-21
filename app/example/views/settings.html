@@ -1,26 +1,28 @@
 <div class="padding" ng-controller="SettingsController">
 
   <super-navbar>
-    <super-navbar-title>
-      My Groups
-    </super-navbar-title>
-  </super-navbar>
+  <super-navbar-title>
+  My Groups
+</super-navbar-title>
+</super-navbar>
 
 
- 
-  <div class="list" ng-repeat="g in groups">
-  <a class = "item" ng-click = "openSettings(g.ID)" >
+
+<div class="list" ng-repeat="g in groups">
+  <a class = "item" >
     <div style="float:left;">
       <h2 >{{g.group_name}}</h2>
-    </div>     
-    <div style="float:right;">
-             <i class="icon super-chevron-right"></i>
     </div>
-  </a>
-  </div> 
+    <div style="float:right;">
+     <!-- <i class="icon super-chevron-right"></i> -->
+   </div>
+ </a>
+</div>
 
-<center><button ng-click="forward()" class="button  button-calm" style = "width: 50%; border-radius:15px;"
-        >Add New Group</button></center>
+<center>
+  <button ng-click="forward()" class="button  button-calm" style = "width: 50%; border-radius:15px;">Add New Group
+  </button>
+</center>
 
 
 

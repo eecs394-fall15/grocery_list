@@ -41,3 +41,7 @@ tab-bar-item#addItem {
 tab-bar-item#myGroceryList {
   background-image: url(icons/navicon.svg);
 }
+
+tab-bar-item#settings{
+  background-image: url(icons/cog.svg);
+}

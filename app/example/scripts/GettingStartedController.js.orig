@@ -3,40 +3,26 @@ angular
 .controller('GettingStartedController', function($scope, supersonic) {
 
 
+<<<<<<< HEAD
+ 
+=======
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
- $scope.navTitle="Forgot Milk?"
+
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
   $scope.state = "NORMAL";
 
-  $scope.makeStatusString = function(status, time) {
-
-    switch(status) {
-      case "O":
-        return "Added to list";
-        break;
-      case "P":
-        return "Mike Got it";
-        break;
-      case "C":
-        return "Mike is Gonna Get";
-        break;
-      default:
-        return status;
-    }
- 
-  };
-
+>>>>>>> origin/dev
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
-    imgQuery.containedIn("item_status",["O", "C"]);
+    imgQuery.equalTo("item_status","O");
     imgQuery.equalTo("list_id",$scope.currentListID);
-    imgQuery.descending("createdAt");
+
     imgQuery.find({
       success: function(results) {
 
@@ -46,22 +32,12 @@ angular
 
           var object = results[i];
           var newImage = {};
-
-          var status ="";
-
           newImage.name = object.get("item_name");
 
           newImage.quantity = object.get("item_quantity");
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
-
-          newImage.time = object.get("updatedAt");
-
-          newImage.status = object.get("item_status");
-
-
-
           supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
@@ -77,16 +53,6 @@ angular
     });
   };
 
-  $scope.showInfo = function(item) {
-    var options = {
-      message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
-      buttonLabel: "Close"
-    };
-
-    supersonic.ui.dialog.alert(item.name, options).then(function() {
-      supersonic.logger.log("Alert closed.");
-    });
-  };
 
 
   $scope.previous= function() {
@@ -95,7 +61,7 @@ angular
     var prevQuery = new Parse.Query(prevClass);
     prevQuery.equalTo("item_status","P");
     prevQuery.equalTo("list_id",$scope.currentListID);
-    prevQuery.descending("updatedAt");
+
     prevQuery.find({
       success: function(results1) {
 
@@ -111,8 +77,6 @@ angular
           newImage1.unit = object.get("item_unit");
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
-          newImage1.status = object.get("item_status");
-          newImage1.time = object.get("updatedAt");
 
           var image = object.get("itemImage");
           newImage1.photo = image.url();
@@ -128,12 +92,8 @@ angular
     });
   };
 
-  $scope.refreshData = function(){
-    $scope.current();
-    $scope.previous();
-  };
-
-  $scope.refreshData();
+  $scope.current();
+  $scope.previous();
 
 
 
@@ -149,7 +109,11 @@ angular
 
 
   supersonic.ui.tabs.whenDidChange( function(event) {
-    $scope.refreshData();
+    if(event.target.tab.index === 0){
+      $scope.openSidebar();
+    }
+    $scope.current();
+    $scope.previous();
   });
 
 
@@ -174,7 +138,10 @@ angular
       success: function(updateQuery) {
 
         supersonic.logger.log("saved successfully");
-        $scope.refreshData();
+        $scope.current();
+        $scope.previous();
+
+
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -188,6 +155,21 @@ angular
 
   $scope.close = function(itemID) {
 
+    var imageClass = Parse.Object.extend("ImageData");
+    var imgQuery = new Parse.Query(imageClass);
+    imgQuery.equalTo("objectId", id);
+    imgQuery.first({
+      success: function(object) {
+
+        object.set("item_status", "bought");
+        object.save();
+
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });
+
     var  UpdateClass= Parse.Object.extend("ImageData");
     var status="P";
     var updateQuery = new UpdateClass();
@@ -195,8 +177,10 @@ angular
     updateQuery.set("item_status",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
-        $scope.refreshData();
 
+
+        $scope.previous();
+        $scope.current();
 
       },
       error: function(updateQuery,error) {
@@ -230,25 +214,20 @@ angular
   });
 
     //The function that is called when the list is changed in the sidebar
-    supersonic.data.channel('changeList').subscribe(function(g){
-      $scope.currentListID = g.id;
-   
-      $scope.navTitle = g.name;
-      
+    supersonic.data.channel('changeList').subscribe(function(listID){
+      $scope.currentListID = listID;
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
-      $scope.refreshData();
-    
-    });
-
-    supersonic.data.channel('refreshData').subscribe(function(bool){
-      $scope.refreshData();
+      $scope.current();
+      $scope.previous();
+      supersonic.logger.log('Now display list ' + listID);
     });
 
     $scope.openSidebar = function(){
      supersonic.ui.drawers.open('left');
    };
 
+<<<<<<< HEAD
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
@@ -257,9 +236,8 @@ angular
       imgQuery.first({
         success: function(object) {
 
-          object.set("item_status", "C");
+          object.set("item_status", "committed");
           object.save();
-          $scope.current();
 
         },
         error: function(error) {
@@ -267,7 +245,9 @@ angular
         }
       });
 
-
   };
+   
+=======
+>>>>>>> origin/dev
 
  });
