@@ -37,9 +37,12 @@ angular
   var loginNameRetrieve = localStorage.getItem("loginName");
   var loginEmailRetrieve = localStorage.getItem("loginEmail");
 
-  if (loginNameRetrieve == null || loginEmailRetrieve == null) {
+  //test
+  var loginNameRetrieve = null;
+
+  if (loginNameRetrieve === null || loginEmailRetrieve === null) {
     //show login page
-    var modalView = new supersonic.ui.View("example#initial-view");
+    var modalView = new supersonic.ui.View("example#login");
     var options = {
       animate: true
     }
@@ -51,7 +54,7 @@ angular
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
- $scope.navTitle="Forgot Milk?"
+  $scope.navTitle="Forgot Milk?"
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
