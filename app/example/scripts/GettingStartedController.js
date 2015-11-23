@@ -28,11 +28,11 @@ angular
 
   supersonic.ui.modal.show(modalView, options);*/
 
-  var loginName = "Mike";
+  /*var loginName = "Mike";
   var loginEmail = "mike@gmail.com";
 
   localStorage.setItem("loginName", loginName);
-  localStorage.setItem("loginEmail", loginEmail);
+  localStorage.setItem("loginEmail", loginEmail);*/
 
   var loginNameRetrieve = localStorage.getItem("loginName");
   var loginEmailRetrieve = localStorage.getItem("loginEmail");
