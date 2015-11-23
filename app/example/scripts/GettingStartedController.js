@@ -35,9 +35,16 @@ angular
   localStorage.setItem("loginEmail", loginEmail);
 
   var loginNameRetrieve = localStorage.getItem("loginName");
+  var loginEmailRetrieve = localStorage.getItem("loginEmail");
 
-  if (loginName == null || loginEmail == null) {
+  if (loginNameRetrieve == null || loginEmailRetrieve == null) {
     //show login page
+    var modalView = new supersonic.ui.View("example#initial-view");
+    var options = {
+      animate: true
+    }
+
+    supersonic.ui.modal.show(modalView, options);
   }
 
 
