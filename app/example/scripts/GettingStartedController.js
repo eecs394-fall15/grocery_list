@@ -3,10 +3,58 @@ angular
 .controller('GettingStartedController', function($scope, supersonic) {
 
 
+  //citation: code for login adapted from area28's answer on http://stackoverflow.com/questions/31016215/login-and-session-management-for-appgyver-supersonic
+
+  /*var loginInfo = {
+    name: "Mike",
+    email: "mike@gmail.com"
+  }
+
+  localStorage.setItem("loginInfo", JSON.stringify(loginInfo));
+
+  var loginInfoRetrieved = localStorage.getItem('loginInfo');
+  if(typeof loginInfoRetrieved !== undefined) {
+    loginInfoRetrieved = JSON.parse(loginInfo);
+  }
+
+  if (loginInfo.name == "Mike") {
+
+  }
+
+  var modalView = new supersonic.ui.View("example#initial-view");
+  var options = {
+    animate: true
+  }
+
+  supersonic.ui.modal.show(modalView, options);*/
+
+  /*var loginName = "Mike";
+  var loginEmail = "mike@gmail.com";
+
+  localStorage.setItem("loginName", loginName);
+  localStorage.setItem("loginEmail", loginEmail);*/
+
+  var loginNameRetrieve = localStorage.getItem("loginName");
+  var loginEmailRetrieve = localStorage.getItem("loginEmail");
+
+  //test
+  var loginNameRetrieve = null;
+
+  if (loginNameRetrieve === null || loginEmailRetrieve === null) {
+    //show login page
+    var modalView = new supersonic.ui.View("example#login");
+    var options = {
+      animate: true
+    }
+
+    supersonic.ui.modal.show(modalView, options);
+  }
+
+
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
- $scope.navTitle="Forgot Milk?"
+  $scope.navTitle="Forgot Milk?"
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
@@ -62,7 +110,7 @@ angular
 
 
 
-          supersonic.logger.log(newImage.id);
+          //supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
 
