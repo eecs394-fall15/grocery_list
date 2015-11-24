@@ -35,8 +35,13 @@ angular
           newImage.id = object.id;
         
           var image = object.get("member_image");
+    
+          if(image.toString()=="")
+          {
+            supersonic.logger.log("its null");
+          }
           newImage.photo = image.url();
-
+          supersonic.logger.log(newImage);
           $scope.resultImages.push(newImage);
 
         }
@@ -101,26 +106,19 @@ angular
   $scope.refreshData();
 
 
-
-  $scope.delete = function(id) {
-
-    supersonic.logger.log("delete clicked, id = " + id);
-
-
-  };
-
-  $scope.open = function(itemID) {
-
-    var  UpdateClass= Parse.Object.extend("ImageData");
+  $scope.open = function(username,email) {
+supersonic.logger.log("inside open");
+    var  InsertClass= Parse.Object.extend("User_Details");
     supersonic.logger.log("here");
     var status="O";
-    var updateQuery = new UpdateClass();
-    updateQuery.id=itemID;
-    updateQuery.set("item_status",status);
-    updateQuery.save(null,{
+    var insertQuery = new InsertClass();
+    insertQuery.set("Group_ID",$scope.currentListID);
+    insertQuery.set("User_Name",username );
+    insertQuery.set("email",email);
+    insertQuery.save(null,{
       success: function(updateQuery) {
 
-        supersonic.logger.log("saved successfully");
+        supersonic.ui.dialog.alert('Added Successfully!!');
         $scope.refreshData();
       },
       error: function(updateQuery,error) {
@@ -134,12 +132,12 @@ angular
 
 
   $scope.close = function(itemID) {
-
-    var  UpdateClass= Parse.Object.extend("ImageData");
-    var status="P";
+supersonic.logger.log("inside close");
+    var  UpdateClass= Parse.Object.extend("User_Details");
+    var status=0;
     var updateQuery = new UpdateClass();
     updateQuery.id=itemID;
-    updateQuery.set("item_status",status);
+    updateQuery.set("Group_ID",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
         $scope.refreshData();
