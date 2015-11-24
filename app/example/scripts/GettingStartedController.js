@@ -38,7 +38,7 @@ angular
   var loginEmailRetrieve = localStorage.getItem("loginEmail");
 
   //test
-  var loginNameRetrieve = null;
+  //var loginNameRetrieve = null;
 
   if (loginNameRetrieve === null || loginEmailRetrieve === null) {
     //show login page
