@@ -11,11 +11,11 @@ angular
 
 
   $scope.current= function() {
-    supersonic.logger.log("inside current");
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("User_Details");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.equalTo("Group_ID",$scope.currentListID);
+
     imgQuery.find({
       success: function(results) {
 
@@ -36,12 +36,15 @@ angular
         
           var image = object.get("member_image");
     
-          if(image.toString()=="")
+          if(image===undefined)
           {
-            supersonic.logger.log("its null");
+          newImage.photo="/member.jpg";
           }
+          else
+          {
           newImage.photo = image.url();
-          supersonic.logger.log(newImage);
+        }
+         
           $scope.resultImages.push(newImage);
 
         }
@@ -66,6 +69,7 @@ angular
 
 
   $scope.previous= function() {
+    supersonic.logger.log("inside previous");
     $scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("LoginData");
     var prevQuery = new Parse.Query(prevClass);
@@ -84,8 +88,17 @@ angular
           newImage1.id = object.id;
          
 
-          var image = object.get("userImage");
-          newImage1.photo = image.url();
+          var image1 = object.get("userImage");
+           if(image1===undefined)
+          {
+          newImage1.photo="/member.jpg";
+          }
+          else
+          {
+          newImage1.photo = image1.url();
+        }
+         
+    
           $scope.resultImages1.push(newImage1);
 
 
@@ -107,7 +120,6 @@ angular
 
 
   $scope.open = function(username,email) {
-supersonic.logger.log("inside open");
     var  InsertClass= Parse.Object.extend("User_Details");
     supersonic.logger.log("here");
     var status="O";
@@ -132,7 +144,6 @@ supersonic.logger.log("inside open");
 
 
   $scope.close = function(itemID) {
-supersonic.logger.log("inside close");
     var  UpdateClass= Parse.Object.extend("User_Details");
     var status=0;
     var updateQuery = new UpdateClass();
