@@ -1,46 +1,25 @@
 angular
 .module('example')
-.controller('GettingStartedController', function($scope, supersonic) {
+.controller('GroupSettingsController', function($scope, supersonic) {
 
 
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
- $scope.navTitle="POTLUCK";
-  $scope.navbarTitle = "Groceries";
-  $scope.swipeID = -1;
 
   $scope.state = "NORMAL";
 
-  $scope.makeStatusString = function(status, time) {
-
-    switch(status) {
-      case "O":
-        return "Added to list";
-        break;
-      case "P":
-        return "Mike Got it";
-        break;
-      case "C":
-        return "Mike is Gonna Get";
-        break;
-      default:
-        return status;
-    }
- 
-  };
 
   $scope.current= function() {
     $scope.resultImages = [];
-    var imageClass= Parse.Object.extend("ImageData");
+    var imageClass= Parse.Object.extend("User_Details");
     var imgQuery = new Parse.Query(imageClass);
-    imgQuery.containedIn("item_status",["O", "C"]);
-    imgQuery.equalTo("list_id",$scope.currentListID);
-    imgQuery.descending("createdAt");
+    imgQuery.equalTo("Group_ID",$scope.currentListID);
+
     imgQuery.find({
       success: function(results) {
 
-        // supersonic.ui.dialog.alert(results.length);
+      supersonic.logger.log(results.length);
         // Do something with the returned Parse.Object values
         for (var i = 0; i < results.length; i++) {
 
@@ -49,23 +28,23 @@ angular
 
           var status ="";
 
-          newImage.name = object.get("item_name");
+          newImage.name = object.get("User_Name");
 
-          newImage.quantity = object.get("item_quantity");
-          newImage.unit = object.get("item_unit");
-          newImage.info = object.get("item_info");
+          newImage.email = object.get("email");
+          
           newImage.id = object.id;
-
-          newImage.time = object.get("updatedAt");
-
-          newImage.status = object.get("item_status");
-
-
-
-          supersonic.logger.log(newImage.id);
-          var image = object.get("itemImage");
+        
+          var image = object.get("member_image");
+    
+          if(image===undefined)
+          {
+          newImage.photo="/member.jpg";
+          }
+          else
+          {
           newImage.photo = image.url();
-
+        }
+         
           $scope.resultImages.push(newImage);
 
         }
@@ -89,23 +68,11 @@ angular
   };
 
 
-  $scope.groupPage = function()
-      {
-        
-        var modalView = new supersonic.ui.View("example#groupSettings");
-        var options = {
-          animate: true
-        };
-        supersonic.ui.layers.push(modalView, options);
-      };
-
   $scope.previous= function() {
+    supersonic.logger.log("inside previous");
     $scope.resultImages1 = [];
-    var prevClass= Parse.Object.extend("ImageData");
+    var prevClass= Parse.Object.extend("LoginData");
     var prevQuery = new Parse.Query(prevClass);
-    prevQuery.equalTo("item_status","P");
-    prevQuery.equalTo("list_id",$scope.currentListID);
-    prevQuery.descending("updatedAt");
     prevQuery.find({
       success: function(results1) {
 
@@ -115,17 +82,23 @@ angular
 
           var object = results1[i];
           var newImage1 = {};
-          newImage1.name = object.get("item_name");
+          newImage1.name = object.get("username");
 
-          newImage1.quantity = object.get("item_quantity");
-          newImage1.unit = object.get("item_unit");
-          newImage1.info = object.get("item_info");
+          newImage1.email = object.get("email");
           newImage1.id = object.id;
-          newImage1.status = object.get("item_status");
-          newImage1.time = object.get("updatedAt");
+         
 
-          var image = object.get("itemImage");
-          newImage1.photo = image.url();
+          var image1 = object.get("userImage");
+           if(image1===undefined)
+          {
+          newImage1.photo="/member.jpg";
+          }
+          else
+          {
+          newImage1.photo = image1.url();
+        }
+         
+    
           $scope.resultImages1.push(newImage1);
 
 
@@ -146,44 +119,18 @@ angular
   $scope.refreshData();
 
 
-
-
-
-  $scope.isSwipeID = function(id) {
-    if (swipeID == id) {
-      return true;
-    }
-    return false;
-  };
-
-
-
-  supersonic.ui.tabs.whenDidChange( function(event) {
-    $scope.refreshData();
-  });
-
-
-
-
-  $scope.delete = function(id) {
-
-    supersonic.logger.log("delete clicked, id = " + id);
-
-
-  };
-
-  $scope.open = function(itemID) {
-
-    var  UpdateClass= Parse.Object.extend("ImageData");
-   
+  $scope.open = function(username,email) {
+    var  InsertClass= Parse.Object.extend("User_Details");
+    supersonic.logger.log("here");
     var status="O";
-    var updateQuery = new UpdateClass();
-    updateQuery.id=itemID;
-    updateQuery.set("item_status",status);
-    updateQuery.save(null,{
+    var insertQuery = new InsertClass();
+    insertQuery.set("Group_ID",$scope.currentListID);
+    insertQuery.set("User_Name",username );
+    insertQuery.set("email",email);
+    insertQuery.save(null,{
       success: function(updateQuery) {
 
-        supersonic.logger.log("saved successfully");
+        supersonic.ui.dialog.alert('Added Successfully!!');
         $scope.refreshData();
       },
       error: function(updateQuery,error) {
@@ -197,12 +144,11 @@ angular
 
 
   $scope.close = function(itemID) {
-
-    var  UpdateClass= Parse.Object.extend("ImageData");
-    var status="P";
+    var  UpdateClass= Parse.Object.extend("User_Details");
+    var status=0;
     var updateQuery = new UpdateClass();
     updateQuery.id=itemID;
-    updateQuery.set("item_status",status);
+    updateQuery.set("Group_ID",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
         $scope.refreshData();
