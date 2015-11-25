@@ -2,13 +2,16 @@ angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
 
+  window.localStorage.setItem("group_id", 1);
+  window.localStorage.setItem("group_name","Grocery List");
 
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
- $scope.navTitle="POTLUCK";
+  $scope.navTitle= "POTLUCK";
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
+
 
   $scope.state = "NORMAL";
 
@@ -17,17 +20,14 @@ angular
     switch(status) {
       case "O":
         return "Added to list";
-        break;
       case "P":
         return "Mike Got it";
-        break;
       case "C":
         return "Mike is Gonna Get";
-        break;
       default:
         return status;
     }
- 
+
   };
 
   $scope.current= function() {
@@ -89,15 +89,13 @@ angular
   };
 
 
-  $scope.groupPage = function()
-      {
-        
+  $scope.groupPage = function() {
         var modalView = new supersonic.ui.View("example#groupSettings");
         var options = {
           animate: true
         };
         supersonic.ui.layers.push(modalView, options);
-      };
+  };
 
   $scope.previous= function() {
     $scope.resultImages1 = [];
@@ -175,7 +173,7 @@ angular
   $scope.open = function(itemID) {
 
     var  UpdateClass= Parse.Object.extend("ImageData");
-   
+
     var status="O";
     var updateQuery = new UpdateClass();
     updateQuery.id=itemID;
@@ -242,13 +240,13 @@ angular
     //The function that is called when the list is changed in the sidebar
     supersonic.data.channel('changeList').subscribe(function(g){
       $scope.currentListID = g.id;
-   
+
       $scope.navTitle = g.name;
-      
+
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
       $scope.refreshData();
-    
+
     });
 
     supersonic.data.channel('refreshData').subscribe(function(bool){
