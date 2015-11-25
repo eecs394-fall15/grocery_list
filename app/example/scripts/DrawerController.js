@@ -1,19 +1,15 @@
 angular
-  .module('example')
-  .controller('DrawerController', function($scope, supersonic) {
-  	$scope.items = [];
-
-  	$scope.groups = [];
-
-	var groupID;
-
-	var groupDetails = Parse.Object.extend("Group_Details");
-
-	var groupDetailsQuery= new Parse.Query(groupDetails);
+.module('example')
+.controller('DrawerController', function($scope, supersonic) {
+	$scope.items = [];
 
 	$scope.groups = [];
 
+	var groupID;
+	var groupDetails = Parse.Object.extend("Group_Details");
+	var groupDetailsQuery= new Parse.Query(groupDetails);
 
+	$scope.groups = [];
 
 	groupDetailsQuery.find({
 		success: function(people){
@@ -25,33 +21,18 @@ angular
 				$scope.groups.push(newGroup);
 			}
 			$scope.$apply();
-
-			// groupDetailsQuery.containedIn("group_ID", $scope.groupIDs);
-			// groupDetailsQuery.find({
-			// 	success: function(group){
-			// 		for (var i = 0; i < group.length; i++){
-			// 			var object = group[i];
-			// 			$scope.groupsNames.push(object.get("group_name"));
-
-			// }
-			// 	},
-			// 	error: function(error) {
-			// 		supersonic.ui.dialog.alert('Not Working!!');
-			// 	}
-			// });
-},
-error: function(error) {
-	supersonic.ui.dialog.alert('Not Working!!');
-},
-});
+		},
+		error: function(error) {
+			supersonic.ui.dialog.alert('Not Working!!');
+		},
+	});
 
 	$scope.changeList = function(group) {
-			
-		supersonic.data.channel('changeList').publish(group);
-	
-		$scope.selectedID = group.id;
+		window.localStorage.setItem("group_id",group.id);
+		window.localStorage.setItem("group_name",group.gname);
 
+		supersonic.data.channel('changeList').publish(group);
 		supersonic.ui.drawers.close();
-		
+
 	};
-  });
+});

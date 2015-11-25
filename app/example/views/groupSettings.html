@@ -3,23 +3,22 @@
 
   <super-navbar>
     <super-navbar-title >
-     Group Settings     
+     Group Settings
     </super-navbar-title>
-    
+
   </super-navbar>
- <div class="item item-divider">Current Members</div> 
+ <div class="item item-divider">Current Members</div>
  <div class="list" ng-repeat="item in resultImages">
     <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
       <img ng-src = "{{item.photo}}">
       <h2><b>{{item.name}}</b></h2>
       <p>{{item.email}}</p>
-    <!--   <p><b>{{item.time | date:'short'}}</b> </p> -->
-      
-      
-    <button class="button button-assertive" style="border-radius:10px;" ng-click="close(item.id)" >
+
+
+    <button class="button button-assertive" style="border-radius:10px;" ng-click="removeMember(item.id)" >
 
         <font size="2">Remove<font></button>
-    
+
     </a>
   </div>
   <div class="item item-divider">Add To Current Group</div>
@@ -28,12 +27,11 @@
       <img ng-src = "{{item1.photo}}">
     <h2><b>{{item1.name}}</b></h2>
       <p>{{item1.email}}</p>
-      
-      <!--  <p><b>{{item1.time | date:'short'}}</b> </p> -->
-      <button class="button button-balanced" style="border-radius:10px;" ng-click="open(item1.name,item1.email)" >
 
-        <font size="2">Add  <font></button>
-    
+      <button class="button button-balanced" style="border-radius:10px;" ng-click="addMember(item1.name,item1.email)" >
+        <font size="2">Add  <font>
+      </button>
+
 
     </a>
   </div>

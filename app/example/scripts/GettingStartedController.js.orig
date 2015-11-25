@@ -3,26 +3,95 @@ angular
 .controller('GettingStartedController', function($scope, supersonic) {
 
 
-<<<<<<< HEAD
- 
-=======
+<<<<<<< Updated upstream
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
+ $scope.navTitle="POTLUCK";
+=======
+  //citation: code for login adapted from area28's answer on http://stackoverflow.com/questions/31016215/login-and-session-management-for-appgyver-supersonic
 
+  /*var loginInfo = {
+    name: "Mike",
+    email: "mike@gmail.com"
+  }
+
+  localStorage.setItem("loginInfo", JSON.stringify(loginInfo));
+
+  var loginInfoRetrieved = localStorage.getItem('loginInfo');
+  if(typeof loginInfoRetrieved !== undefined) {
+    loginInfoRetrieved = JSON.parse(loginInfo);
+  }
+
+  if (loginInfo.name == "Mike") {
+
+  }
+
+  var modalView = new supersonic.ui.View("example#initial-view");
+  var options = {
+    animate: true
+  }
+
+  supersonic.ui.modal.show(modalView, options);*/
+
+  /*var loginName = "Mike";
+  var loginEmail = "mike@gmail.com";
+
+  localStorage.setItem("loginName", loginName);
+  localStorage.setItem("loginEmail", loginEmail);*/
+
+  var loginNameRetrieve = localStorage.getItem("loginName");
+  var loginEmailRetrieve = localStorage.getItem("loginEmail");
+
+  //test
+  //var loginNameRetrieve = null;
+
+  if (loginNameRetrieve === null || loginEmailRetrieve === null) {
+    //show login page
+    var modalView = new supersonic.ui.View("example#login");
+    var options = {
+      animate: true
+    };
+
+    supersonic.ui.modal.show(modalView, options);
+  }
+
+  window.localStorage.setItem("group_id", 1);
+  window.localStorage.setItem("group_name","Grocery List");
+
+  $scope.listNames = ["Grocery List","Christmas List","Office"];
+  $scope.currentListID = 1;
+  $scope.header = $scope.listNames[$scope.currentListID-1];
+  $scope.navTitle= "Forgot Milk?";
+>>>>>>> Stashed changes
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
+
   $scope.state = "NORMAL";
 
->>>>>>> origin/dev
+  $scope.makeStatusString = function(status, time) {
+
+    switch(status) {
+      case "O":
+        return "Added to list";
+      case "P":
+        return "Mike Got it";
+      case "C":
+        return "Mike is Gonna Get";
+      default:
+        return status;
+    }
+
+  };
+
   $scope.current= function() {
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
-    imgQuery.equalTo("item_status","O");
+    imgQuery.containedIn("item_status",["O", "C"]);
     imgQuery.equalTo("list_id",$scope.currentListID);
-
+    imgQuery.descending("createdAt");
     imgQuery.find({
       success: function(results) {
 
@@ -32,12 +101,22 @@ angular
 
           var object = results[i];
           var newImage = {};
+
+          var status ="";
+
           newImage.name = object.get("item_name");
 
           newImage.quantity = object.get("item_quantity");
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
+
+          newImage.time = object.get("updatedAt");
+
+          newImage.status = object.get("item_status");
+
+
+
           supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
@@ -53,7 +132,25 @@ angular
     });
   };
 
+  $scope.showInfo = function(item) {
+    var options = {
+      message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
+      buttonLabel: "Close"
+    };
 
+    supersonic.ui.dialog.alert(item.name, options).then(function() {
+      supersonic.logger.log("Alert closed.");
+    });
+  };
+
+
+  $scope.groupPage = function() {
+        var modalView = new supersonic.ui.View("example#groupSettings");
+        var options = {
+          animate: true
+        };
+        supersonic.ui.layers.push(modalView, options);
+  };
 
   $scope.previous= function() {
     $scope.resultImages1 = [];
@@ -61,7 +158,7 @@ angular
     var prevQuery = new Parse.Query(prevClass);
     prevQuery.equalTo("item_status","P");
     prevQuery.equalTo("list_id",$scope.currentListID);
-
+    prevQuery.descending("updatedAt");
     prevQuery.find({
       success: function(results1) {
 
@@ -77,6 +174,8 @@ angular
           newImage1.unit = object.get("item_unit");
           newImage1.info = object.get("item_info");
           newImage1.id = object.id;
+          newImage1.status = object.get("item_status");
+          newImage1.time = object.get("updatedAt");
 
           var image = object.get("itemImage");
           newImage1.photo = image.url();
@@ -92,8 +191,12 @@ angular
     });
   };
 
-  $scope.current();
-  $scope.previous();
+  $scope.refreshData = function(){
+    $scope.current();
+    $scope.previous();
+  };
+
+  $scope.refreshData();
 
 
 
@@ -109,11 +212,7 @@ angular
 
 
   supersonic.ui.tabs.whenDidChange( function(event) {
-    if(event.target.tab.index === 0){
-      $scope.openSidebar();
-    }
-    $scope.current();
-    $scope.previous();
+    $scope.refreshData();
   });
 
 
@@ -129,7 +228,7 @@ angular
   $scope.open = function(itemID) {
 
     var  UpdateClass= Parse.Object.extend("ImageData");
-    supersonic.logger.log("here");
+   
     var status="O";
     var updateQuery = new UpdateClass();
     updateQuery.id=itemID;
@@ -138,10 +237,7 @@ angular
       success: function(updateQuery) {
 
         supersonic.logger.log("saved successfully");
-        $scope.current();
-        $scope.previous();
-
-
+        $scope.refreshData();
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -155,21 +251,6 @@ angular
 
   $scope.close = function(itemID) {
 
-    var imageClass = Parse.Object.extend("ImageData");
-    var imgQuery = new Parse.Query(imageClass);
-    imgQuery.equalTo("objectId", id);
-    imgQuery.first({
-      success: function(object) {
-
-        object.set("item_status", "bought");
-        object.save();
-
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-
     var  UpdateClass= Parse.Object.extend("ImageData");
     var status="P";
     var updateQuery = new UpdateClass();
@@ -177,10 +258,8 @@ angular
     updateQuery.set("item_status",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
+        $scope.refreshData();
 
-
-        $scope.previous();
-        $scope.current();
 
       },
       error: function(updateQuery,error) {
@@ -214,20 +293,25 @@ angular
   });
 
     //The function that is called when the list is changed in the sidebar
-    supersonic.data.channel('changeList').subscribe(function(listID){
-      $scope.currentListID = listID;
+    supersonic.data.channel('changeList').subscribe(function(g){
+      $scope.currentListID = g.id;
+
+      $scope.navTitle = g.name;
+
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
-      $scope.current();
-      $scope.previous();
-      supersonic.logger.log('Now display list ' + listID);
+      $scope.refreshData();
+
+    });
+
+    supersonic.data.channel('refreshData').subscribe(function(bool){
+      $scope.refreshData();
     });
 
     $scope.openSidebar = function(){
      supersonic.ui.drawers.open('left');
    };
 
-<<<<<<< HEAD
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
@@ -236,8 +320,9 @@ angular
       imgQuery.first({
         success: function(object) {
 
-          object.set("item_status", "committed");
+          object.set("item_status", "C");
           object.save();
+          $scope.current();
 
         },
         error: function(error) {
@@ -245,9 +330,7 @@ angular
         }
       });
 
+
   };
-   
-=======
->>>>>>> origin/dev
 
  });

@@ -59,7 +59,7 @@ angular
     $scope.currentListID = 1;
     supersonic.data.channel('changeList').subscribe(function(g){
       $scope.currentListID = g.id;
-      supersonic.logger.log('Now display list ' + g.id);
+      // supersonic.logger.log('Now display list ' + g.id);
     });
      $scope.submitImage = function(groceryItem) {
       $scope.submittingImage = true;

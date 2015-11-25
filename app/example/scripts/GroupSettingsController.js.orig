@@ -13,10 +13,19 @@ angular
 
 
   $scope.current= function() {
+<<<<<<< Updated upstream
+    $scope.resultImages = [];
+    var imageClass= Parse.Object.extend("User_Details");
+    var imgQuery = new Parse.Query(imageClass);
+    imgQuery.equalTo("Group_ID",$scope.currentListID);
+
+=======
+    // supersonic.logger.log("inside current");
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("User_Details");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.equalTo("Group_ID", $scope.currentListID);
+>>>>>>> Stashed changes
     imgQuery.find({
       success: function(results) {
 
@@ -33,16 +42,25 @@ angular
           newImage.id = object.id;
 
           var image = object.get("member_image");
-
+<<<<<<< Updated upstream
+    
           if(image===undefined)
+=======
+
+          if(image.toString()==="")
+>>>>>>> Stashed changes
           {
           newImage.photo="/member.jpg";
           }
           else
           {
           newImage.photo = image.url();
+<<<<<<< Updated upstream
         }
-
+         
+=======
+          // supersonic.logger.log(newImage);
+>>>>>>> Stashed changes
           $scope.resultImages.push(newImage);
 
         }
@@ -67,6 +85,7 @@ angular
 
 
   $scope.previous= function() {
+    supersonic.logger.log("inside previous");
     $scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("LoginData");
     var prevQuery = new Parse.Query(prevClass);
@@ -84,6 +103,7 @@ angular
           newImage1.email = object.get("email");
           newImage1.id = object.id;
 
+
           var image1 = object.get("userImage");
            if(image1===undefined)
           {
@@ -93,8 +113,8 @@ angular
           {
           newImage1.photo = image1.url();
         }
-
-
+         
+    
           $scope.resultImages1.push(newImage1);
 
 
@@ -109,13 +129,15 @@ angular
 
   $scope.refreshData = function(){
     $scope.current();
+    supersonic.logger.log("YAY I'm here! and current list ID = " + $scope.currentListID);
     $scope.previous();
   };
 
   $scope.refreshData();
 
 
-  $scope.addMember = function(username,email) {
+<<<<<<< Updated upstream
+  $scope.open = function(username,email) {
     var  InsertClass= Parse.Object.extend("User_Details");
     supersonic.logger.log("here");
     var status="O";
@@ -133,11 +155,34 @@ angular
         supersonic.ui.dialog.alert('Not Working!!');
       }
     });
-  };
+=======
+//   $scope.open = function(username,email) {
+// supersonic.logger.log("inside open");
+//     var  InsertClass= Parse.Object.extend("User_Details");
+//     supersonic.logger.log("here");
+//     var status="O";
+//     var insertQuery = new InsertClass();
+//     insertQuery.set("Group_ID",$scope.currentListID);
+//     insertQuery.set("User_Name",username );
+//     insertQuery.set("email",email);
+//     insertQuery.save(null,{
+//       success: function(updateQuery) {
+>>>>>>> Stashed changes
+
+//         supersonic.ui.dialog.alert('Added Successfully!!');
+//         $scope.refreshData();
+//       },
+//       error: function(updateQuery,error) {
+//         supersonic.ui.dialog.alert('Not Working!!');
+//       }
+//     });
 
 
+//   };
 
-  $scope.removeMember = function(itemID) {
+
+<<<<<<< Updated upstream
+  $scope.close = function(itemID) {
     var  UpdateClass= Parse.Object.extend("User_Details");
     var status=0;
     var updateQuery = new UpdateClass();
@@ -146,14 +191,30 @@ angular
     updateQuery.save(null,{
       success: function(updateQuery) {
         $scope.refreshData();
+=======
+>>>>>>> Stashed changes
+
+//   $scope.close = function(itemID) {
+//     supersonic.logger.log("inside close");
+//     var  UpdateClass= Parse.Object.extend("User_Details");
+//     var status=0;
+//     var updateQuery = new UpdateClass();
+//     updateQuery.id=itemID;
+//     updateQuery.set("Group_ID",status);
+//     updateQuery.save(null,{
+//       success: function(updateQuery) {
+//         $scope.refreshData();
 
 
-      },
-      error: function(updateQuery,error) {
-        supersonic.ui.dialog.alert('Not Working!!');
-      }
-    });
-  };
+//       },
+//       error: function(updateQuery,error) {
+//         supersonic.ui.dialog.alert('Not Working!!');
+//       }
+//     });
+
+
+
+//   };
 
 //   $scope.postpone = function(id) {
 //     supersonic.logger.log("postpone clicked, id = " + id);
