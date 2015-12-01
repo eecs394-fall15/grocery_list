@@ -14,22 +14,34 @@
 
      <div class="row" ng-repeat="image in resultImages" ng-if="$index % 2 === 0">
          <div class="col col-50" ng-if="$index < resultImages.length">
-             <img ng-src="{{resultImages[$index].photo}}" width="100%" ng-if="resultImages[$index].status != 'O'" style="-webkit-filter: grayscale(1); filter: grayscale(1);"/>
-             <img ng-src="{{resultImages[$index].photo}}" width="100%" ng-if="resultImages[$index].status == 'O'"/>
-             <div>
-                <p style="float: left;"> {{resultImages[$index].name}} </p>
-                <button class = "button button-small icon-left super-checkmark-round button-clear" style="float: right;" ng-click = "commit(resultImages[$index].id)" ng-if="resultImages[$index].status == 'O'">  </button>
-                <button class="button button-light" style="float: right;" ng-if="resultImages[$index].status != 'O'" ng-click = "commit(resultImages[$index].id)">Mike</button>
+             <div class ="row">             
+               <img ng-src="{{resultImages[$index].photo}}" width="100%" ng-if="resultImages[$index].status != 'O'" style="-webkit-filter: grayscale(1); filter: grayscale(1);"/>
+               <img ng-src="{{resultImages[$index].photo}}" width="100%" ng-if="resultImages[$index].status == 'O'"/>
+             </div>
+             <div class="row">
+                <div class = "col col-50" style="float:left;">
+                  <button class = "button button-stable button-clear" style="float: left; font-size: 85%;">{{resultImages[$index].name}} </button>
+                </div>
+                <div class = "col col-50" style="float:right;">
+                  <button class = "button button-light icon-left super-checkmark-round" style="float: right;" ng-click = "commit(resultImages[$index].id)" ng-if="resultImages[$index].status == 'O'">  </button>
+                  <button class="button button-light " style="float: right;font-size: 85%;" ng-if="resultImages[$index].status != 'O'" ng-click = "commit(resultImages[$index].id)">Mike</button>
+                </div>
 
              </div>
          </div>
          <div class="col col-50" ng-if="$index + 1 < resultImages.length">
-            <img ng-src="{{resultImages[$index + 1].photo}}" width="100%" ng-if="resultImages[$index].status != 'O'" style="-webkit-filter: grayscale(1); filter: grayscale(1);"/>
-            <img ng-src="{{resultImages[$index + 1].photo}}" width="100%" ng-if="resultImages[$index].status == 'O'"/>
-             <p style="float: left;"> {{resultImages[$index + 1].name}} </p>
-
-             <button class = "button button-small icon-left super-checkmark-round button-clear" style="float: right;" ng-if="resultImages[$index + 1].status == 'O'" ng-click = "commit(resultImages[$index+1].id)">  </button>
-             <button class="button button-light" style="float: right;" ng-if="resultImages[$index + 1].status != 'O'" ng-click = "commit(resultImages[$index+1].id)">Mike</button>
+          <div class ="row">
+              <img ng-src="{{resultImages[$index + 1].photo}}" width="100%" ng-if="resultImages[$index+1].status != 'O'" style="-webkit-filter: grayscale(1); filter: grayscale(1);"/>
+              <img ng-src="{{resultImages[$index + 1].photo}}" width="100%" ng-if="resultImages[$index+1].status == 'O'"/>
+          </div>
+          <div class ="row">
+            <div class = "col col-50" style="float:left;">
+              <button class = "button button-stable button-clear" style="float: left; font-size: 85%;">{{resultImages[$index+1].name}} </button>
+            </div>
+            <div class = "col col-50" style="float:right;">
+              <button class = "button button-light icon-left super-checkmark-round" style="float: right;" ng-if="resultImages[$index + 1].status == 'O'" ng-click = "commit(resultImages[$index+1].id)">  </button>
+              <button class="button button-light " style="float: right;font-size: 85%;" ng-if="resultImages[$index + 1].status != 'O'" ng-click = "commit(resultImages[$index+1].id)">Mike</button>
+            </div>
          </div>
      </div>
 
