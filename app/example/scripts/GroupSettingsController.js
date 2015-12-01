@@ -119,6 +119,7 @@ angular
   $scope.refreshData();
 
 
+  //OLD Version of the add member function
   $scope.addMember = function(username,email) {
     var  InsertClass= Parse.Object.extend("User_Details");
     supersonic.logger.log("here");
@@ -130,13 +131,25 @@ angular
     insertQuery.save(null,{
       success: function(updateQuery) {
 
-        supersonic.ui.dialog.alert('Added Successfully!!');
+        supersonic.ui.dialog.alert(username + ' was added successfully!!');
         $scope.refreshData();
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
       }
     });
+  };
+  supersonic.data.channel('addingUser').subscribe(function(user){
+    $scope.addMember(user.username, user.email);
+  });
+  //New version of the addMember function
+  $scope.addMemberPage = function(){
+    var addMembersView = new supersonic.ui.View('example#add_member');
+    window.localStorage.setItem('currentUsers', currentUsers);
+    var options = {
+      animate: true,
+    };
+    supersonic.ui.layers.push(addMembersView, options);
   };
 
 

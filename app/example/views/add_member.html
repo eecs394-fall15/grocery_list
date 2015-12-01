@@ -1,29 +1,24 @@
 <div class="padding" ng-controller="AddMemberController">
   <super-navbar>
-   
+
     <super-navbar-title>
-      Add Members 
+      Add Members
     </super-navbar-title>
-  
+
   </super-navbar>
 
+<div class="item item-divider">Add To Current Group</div>
+  <div class="list">
+    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)" ng-repeat="item1 in resultImages1">
+      <img ng-src = "{{item1.photo}}">
+    <h2><b>{{item1.name}}</b></h2>
+      <p>{{item1.email}}</p>
 
-  <ul class="list" ng-repeat="g in groupArray">
-  
-      <li class="item">{{g.givenname}}<br>
-        {{g.phone}}
-      </li>
-    
-  
-  </ul> 
+      <button class="button button-balanced" style="border-radius:10px;" ng-click="addMember(item1.name,item1.email)" >
+        <font size="2">Add<font>
+      </button>
 
-  
-      <center>
-        <button class="button icon super-person-add" ng-click="open()" style=" width : 50% ;border-radius: 10px"> </button>
-      </center>
-<br>
-<br>
-<br>
-<button ng-click="submitmembers()" class="button button-full button-balanced" style="border-radius: 10px"
-        >Done!</button>
+
+    </a>
+  </div>
 
