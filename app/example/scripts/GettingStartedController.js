@@ -14,6 +14,22 @@ angular
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
+  var loginNameRetrieve = localStorage.getItem("loginName");
+  var loginEmailRetrieve = localStorage.getItem("loginEmail");
+
+  //test
+  //var loginNameRetrieve = null;
+
+  if (loginNameRetrieve === null || loginEmailRetrieve === null) {
+    //show login page
+    var modalView = new supersonic.ui.View("example#login");
+    var options = {
+      animate: true
+    }
+
+    supersonic.ui.modal.show(modalView, options);
+  }
+
 
   $scope.state = "NORMAL";
 
