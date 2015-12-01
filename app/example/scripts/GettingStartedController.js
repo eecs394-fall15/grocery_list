@@ -80,6 +80,7 @@ angular
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
+          newImage.commitName = object.get("commit_name");
 
           newImage.time = object.get("updatedAt");
 
@@ -288,12 +289,18 @@ angular
       var imgQuery = new Parse.Query(imageClass);
       imgQuery.equalTo("objectId", id);
       imgQuery.first({
-        success: function(object) {
+        success: function(object,name) {
 
           if (object.get("item_status") == "C")
+          {
             object.set("item_status", "O");
+          }
+
           else
+          {
             object.set("item_status", "C");
+            object.set("commit_name", $scope.loginNameRetrieve);
+          }
           object.save();
           $scope.current();
 
