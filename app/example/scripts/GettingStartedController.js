@@ -271,7 +271,10 @@ angular
       imgQuery.first({
         success: function(object) {
 
-          object.set("item_status", "C");
+          if (object.get("item_status") == "C")
+            object.set("item_status", "O");
+          else
+            object.set("item_status", "C");
           object.save();
           $scope.current();
 
