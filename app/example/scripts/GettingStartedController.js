@@ -293,7 +293,8 @@ angular
 
           if (object.get("item_status") == "C")
           {
-            object.set("item_status", "O");
+            if (object.get("commit_name") == $scope.loginNameRetrieve)
+              object.set("item_status", "O");
           }
 
           else
