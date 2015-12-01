@@ -7,7 +7,9 @@ angular
 
 	var groupID;
 	var groupDetails = Parse.Object.extend("Group_Details");
+
 	var groupDetailsQuery= new Parse.Query(groupDetails);
+	groupDetailsQuery.ascending("group_name");
 
 	$scope.groups = [];
 
@@ -38,7 +40,7 @@ angular
 
 	$scope.addGroup = function()
 	{
-	supersonic.logger.log("inside add group");
+	
 	var modalView = new supersonic.ui.View("example#addgroup");
 	var options = {
 	  animate: true
