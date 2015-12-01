@@ -2,6 +2,8 @@ angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
 
+  
+
   window.localStorage.setItem("group_id", 1);
   window.localStorage.setItem("group_name","Grocery List");
 
@@ -15,19 +17,23 @@ angular
 
   $scope.state = "NORMAL";
 
-  $scope.makeStatusString = function(status, time) {
+  $scope.makeStatusString = function(status) {
 
     switch(status) {
       case "O":
-        return "Added to list";
+        return "";
       case "P":
-        return "Mike Got it";
+        return "";
       case "C":
-        return "Mike is Gonna Get";
+        return "Mike";
       default:
         return status;
     }
 
+  };
+
+  $scope.showName = function(status) {
+    supersonic.ui.dialog.alert(status.toString());
   };
 
   $scope.current= function() {
