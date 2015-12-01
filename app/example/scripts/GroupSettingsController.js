@@ -10,7 +10,7 @@ angular
   $scope.header = $scope.listNames[$scope.currentListID-1];
 
   $scope.state = "NORMAL";
-
+  var currentUsers = [];
 
   $scope.current= function() {
     $scope.resultImages = [];
@@ -29,6 +29,8 @@ angular
           var status ="";
 
           newImage.name = object.get("User_Name");
+          currentUsers.push(newImage.name);
+
           newImage.email = object.get("email");
           newImage.id = object.id;
 
@@ -47,6 +49,7 @@ angular
 
         }
         $scope.$apply();
+        $scope.previous();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -70,6 +73,8 @@ angular
     $scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("LoginData");
     var prevQuery = new Parse.Query(prevClass);
+    supersonic.logger.log(currentUsers);
+    prevQuery.notContainedIn("username", currentUsers);
     prevQuery.find({
       success: function(results1) {
 
@@ -109,7 +114,6 @@ angular
 
   $scope.refreshData = function(){
     $scope.current();
-    $scope.previous();
   };
 
   $scope.refreshData();
