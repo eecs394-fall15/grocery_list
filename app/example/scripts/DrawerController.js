@@ -35,4 +35,20 @@ angular
 		supersonic.ui.drawers.close();
 
 	};
+
+	$scope.addGroup = function()
+	{
+	supersonic.logger.log("inside add group");
+	var modalView = new supersonic.ui.View("example#addgroup");
+	var options = {
+	  animate: true
+	}
+	supersonic.ui.drawers.close();
+	supersonic.ui.modal.show(modalView, options);
+
+
+
+
+
+	};
 });
