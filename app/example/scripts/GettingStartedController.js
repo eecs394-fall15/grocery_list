@@ -88,7 +88,7 @@ angular
 
 
 
-          supersonic.logger.log(newImage.id);
+          //supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
 
@@ -103,16 +103,6 @@ angular
     });
   };
 
-  $scope.showInfo = function(item) {
-    var options = {
-      message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
-      buttonLabel: "Close"
-    };
-
-    supersonic.ui.dialog.alert(item.name, options).then(function() {
-      supersonic.logger.log("Alert closed.");
-    });
-  };
 
 
   $scope.groupPage = function() {
@@ -283,6 +273,19 @@ angular
      supersonic.ui.drawers.open('left');
    };
 
+
+   $scope.showInfo = function(item) {
+    supersonic.logger.log("showinfo");
+
+     var options = {
+       message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
+       buttonLabel: "Close"
+     };
+
+     supersonic.ui.dialog.alert(item.name, options).then(function() {
+       supersonic.logger.log("Alert closed.");
+     });
+   };
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
