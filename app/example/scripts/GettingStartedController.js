@@ -16,7 +16,7 @@ angular
 
   $scope.loginNameRetrieve = localStorage.getItem("loginName");
   $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
-
+  
   //test
   //var loginNameRetrieve = null;
 
@@ -88,7 +88,7 @@ angular
 
 
 
-          supersonic.logger.log(newImage.id);
+         
           var image = object.get("itemImage");
           newImage.photo = image.url();
 
@@ -162,9 +162,40 @@ angular
     });
   };
 
+ 
+ 
+  var settingsBtn = new supersonic.ui.NavigationBarButton({
+  title : "Settings",
+  onTap: function() {
+    $scope.groupPage();
+  },
+  styleId: "nav-settings"
+})
+
+  var refreshBtn = new supersonic.ui.NavigationBarButton({
+  onTap: function() {
+   $scope.refreshData();
+  },
+  styleId: "nav-refresh"
+})
+
+supersonic.ui.navigationBar.update({
+  title: $scope.navTitle ,
+  overrideBackButton: false,
+  buttons: {
+    right: [settingsBtn],
+    left: [refreshBtn]
+  }
+}).then(supersonic.ui.navigationBar.show());
+ 
+
+
+
   $scope.refreshData = function(){
+
     $scope.current();
     $scope.previous();
+    
   };
 
   $scope.refreshData();
@@ -266,11 +297,20 @@ angular
     //The function that is called when the list is changed in the sidebar
     supersonic.data.channel('changeList').subscribe(function(g){
       $scope.currentListID = g.id;
-
       $scope.navTitle = g.name;
-
+     
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
+
+      supersonic.ui.navigationBar.update({
+        title: $scope.navTitle ,
+        overrideBackButton: false,
+        buttons: {
+          right: [settingsBtn],
+          left: [refreshBtn]
+        }
+      }).then(supersonic.ui.navigationBar.show());
+ 
       $scope.refreshData();
 
     });
@@ -311,7 +351,7 @@ angular
         }
       });
 
-
   };
+
 
  });

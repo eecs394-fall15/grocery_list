@@ -33,6 +33,19 @@ navigation-bar back-button {
   font-weight: 300;
 }
 
+
+#nav-settings button{
+ 
+}
+
+#nav-refresh icon{
+ background-image: url(icons/refresh.png);
+ background-size: 20px;
+ width: 10px;
+height: 10px;
+
+}
+
 /**************************************
  *  Tab Bar
  *************************************/

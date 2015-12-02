@@ -14,6 +14,18 @@ navigation-bar title {
   font-weight: 600;
 }
 
+#nav-settings button{
+ 
+}
+
+#nav-refresh icon{
+ background-image: url(icons/refresh.png);
+ background-size: 20px;
+ width: 10px;
+height: 10px;
+
+}
+
 navigation-bar button, navigation-bar back-bar-button {
   color: #ffffff;
   font-weight: 300;
