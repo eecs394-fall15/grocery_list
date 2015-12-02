@@ -5,6 +5,14 @@ angular
 
 	$scope.groups = [];
 
+	supersonic.ui.drawers.whenWillShow(function() {
+		
+    showDrawer();  
+});
+
+
+function showDrawer ()
+{
 	var groupID;
 	var groupDetails = Parse.Object.extend("Group_Details");
 
@@ -28,7 +36,7 @@ angular
 			supersonic.ui.dialog.alert('Not Working!!');
 		},
 	});
-
+};
 	$scope.changeList = function(group) {
 		window.localStorage.setItem("group_id",group.id);
 		window.localStorage.setItem("group_name",group.gname);
