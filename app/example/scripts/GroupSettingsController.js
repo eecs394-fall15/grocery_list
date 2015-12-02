@@ -69,48 +69,48 @@ angular
   // };
 
 
-  $scope.previous= function() {
-    $scope.resultImages1 = [];
-    var prevClass= Parse.Object.extend("LoginData");
-    var prevQuery = new Parse.Query(prevClass);
-    supersonic.logger.log(currentUsers);
-    prevQuery.notContainedIn("username", currentUsers);
-    prevQuery.find({
-      success: function(results1) {
+  // $scope.previous= function() {
+  //   $scope.resultImages1 = [];
+  //   var prevClass= Parse.Object.extend("LoginData");
+  //   var prevQuery = new Parse.Query(prevClass);
+  //   supersonic.logger.log(currentUsers);
+  //   prevQuery.notContainedIn("username", currentUsers);
+  //   prevQuery.find({
+  //     success: function(results1) {
 
-        // supersonic.ui.dialog.alert(results.length);
-        // Do something with the returned Parse.Object values
-        for (var i = 0; i < results1.length; i++) {
+  //       // supersonic.ui.dialog.alert(results.length);
+  //       // Do something with the returned Parse.Object values
+  //       for (var i = 0; i < results1.length; i++) {
 
-          var object = results1[i];
-          var newImage1 = {};
-          newImage1.name = object.get("username");
+  //         var object = results1[i];
+  //         var newImage1 = {};
+  //         newImage1.name = object.get("username");
 
-          newImage1.email = object.get("email");
-          newImage1.id = object.id;
+  //         newImage1.email = object.get("email");
+  //         newImage1.id = object.id;
 
-          var image1 = object.get("userImage");
-           if(image1===undefined)
-          {
-          newImage1.photo="/member.jpg";
-          }
-          else
-          {
-          newImage1.photo = image1.url();
-        }
-
-
-          $scope.resultImages1.push(newImage1);
+  //         var image1 = object.get("userImage");
+  //          if(image1===undefined)
+  //         {
+  //         newImage1.photo="/member.jpg";
+  //         }
+  //         else
+  //         {
+  //         newImage1.photo = image1.url();
+  //       }
 
 
-        }
-        $scope.$apply();
-      },
-      error: function(error) {
-        supersonic.ui.dialog.alert('Not Working!!');
-      }
-    });
-  };
+  //         $scope.resultImages1.push(newImage1);
+
+
+  //       }
+  //       $scope.$apply();
+  //     },
+  //     error: function(error) {
+  //       supersonic.ui.dialog.alert('Not Working!!');
+  //     }
+  //   });
+  // };
 
   $scope.refreshData = function(){
     $scope.current();
@@ -169,6 +169,15 @@ angular
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
       }
+    });
+  };
+
+  $scope.changeEventName = function(){
+    var options = {
+      title: "Enter the new event name"
+    };
+    supersonic.ui.dialog.prompt("Change Event Name", options).then(function(result) {
+      supersonic.logger.log("updated event name is: " + result.input);
     });
   };
 
