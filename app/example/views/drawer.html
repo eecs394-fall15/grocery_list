@@ -1,8 +1,22 @@
 <script>
   document.addEventListener("touchmove", function(e){
+  
     e.preventDefault();
   });
 </script>
-<ul class="list" ng-controller='DrawerController' >
+<div ng-controller="DrawerController">
+<ul class="list"  >
 	<li class="item" ng-click="changeList(g)" ng-repeat="g in groups">{{g.name}}</li>
 </ul>
+
+<!-- <super-navigate location="example#addgroup">
+  <button class="button button-block button-positive"> navigate to "example/learn-more.html"</button>
+</super-navigate> -->
+
+<center>
+
+	<button class="button button-balanced" style="border-radius:10px" ng-click="addGroup()" >
+        <font size="3">Create List <font>
+      </button>
+</center>
+</div>

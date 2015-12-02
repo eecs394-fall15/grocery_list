@@ -5,9 +5,19 @@ angular
 
 	$scope.groups = [];
 
+	supersonic.ui.drawers.whenWillShow(function() {
+		
+    showDrawer();  
+});
+
+
+function showDrawer ()
+{
 	var groupID;
 	var groupDetails = Parse.Object.extend("Group_Details");
+
 	var groupDetailsQuery= new Parse.Query(groupDetails);
+	groupDetailsQuery.ascending("group_name");
 
 	$scope.groups = [];
 
@@ -26,13 +36,29 @@ angular
 			supersonic.ui.dialog.alert('Not Working!!');
 		},
 	});
-
+};
 	$scope.changeList = function(group) {
 		window.localStorage.setItem("group_id",group.id);
 		window.localStorage.setItem("group_name",group.gname);
 
 		supersonic.data.channel('changeList').publish(group);
 		supersonic.ui.drawers.close();
+
+	};
+
+	$scope.addGroup = function()
+	{
+	
+	var modalView = new supersonic.ui.View("example#addgroup");
+	var options = {
+	  animate: true
+	}
+	supersonic.ui.drawers.close();
+	supersonic.ui.modal.show(modalView, options);
+
+
+
+
 
 	};
 });
