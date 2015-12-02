@@ -316,8 +316,12 @@ supersonic.ui.navigationBar.update({
    $scope.showInfo = function(item) {
     supersonic.logger.log("showinfo");
 
+    if (item.quantity == undefined) {
+      item.quantity = "1";
+    }
+
      var options = {
-       message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
+       message: "Quantity: " + item.quantity +  "\nInfo: " + item.info,
        buttonLabel: "Close"
      };
 
@@ -325,6 +329,14 @@ supersonic.ui.navigationBar.update({
        supersonic.logger.log("Alert closed.");
      });
    };
+
+
+
+
+
+
+
+
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
