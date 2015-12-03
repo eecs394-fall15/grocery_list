@@ -12,7 +12,7 @@
 
   </super-navbar> -->
 
-    <!-- Citation: The DIV below is code adapted from: https://blog.nraboy.com/2015/03/make-a-gallery-like-image-grid-using-ionic-framework/ -->
+    <!-- Citation: The DIV below is code adapted from: https://blog.nraboy.com/2015/03/make-a-gallery-like-image-grid-using-ionic-framework/-->
 
 
      <div class="row" ng-repeat="image in resultImages" ng-if="$index % 2 === 0 " >
@@ -49,6 +49,8 @@
          </div>
      </div>
 
+
+
     <!-- <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
 
       <img ng-src = "{{item.photo}}" ng-click="showInfo(item)">
@@ -60,5 +62,9 @@
       <button class="button button-balanced" style="border-radius:10px; " ng-click="close(item.id)"> Got it! </button>
       </div>
     </a> -->
+
+</div>
+
+<button ng-if="resultImages.length == 0"> Add Item </button>
 
 </div>

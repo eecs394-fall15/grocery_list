@@ -30,10 +30,16 @@
 			   memObj.save(null,{
 
 			   	success: function(results) {
-supersonic.ui.dialog.alert('List Created Successfully!').then(function(){
+				supersonic.ui.dialog.alert('List Created Successfully!').then(function(){
+					
+					window.localStorage.setItem("group_id",group.id);
+					window.localStorage.setItem("group_name",group.gname);
+
+					supersonic.data.channel('changeList').publish(group);
+
             
-	supersonic.ui.modal.hide();
-          });
+				supersonic.ui.modal.hide();
+          		});
 
 			   	},
 error: function(results,error) {
@@ -49,6 +55,8 @@ error: function(results,error) {
 					supersonic.ui.dialog.alert('Not Working!!');
 				}
 			});
+
+
 
 
 
