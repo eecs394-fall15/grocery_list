@@ -2,7 +2,7 @@ angular
 .module('example')
 .controller('GettingStartedController', function($scope, supersonic) {
 
-  
+
 
   window.localStorage.setItem("group_id", 1);
   window.localStorage.setItem("group_name","Grocery List");
@@ -16,7 +16,7 @@ angular
 
   $scope.loginNameRetrieve = localStorage.getItem("loginName");
   $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
-  
+
   //test
   //var loginNameRetrieve = null;
 
@@ -151,22 +151,22 @@ angular
     });
   };
 
- 
- 
+
+
   var settingsBtn = new supersonic.ui.NavigationBarButton({
-  title : "Settings",
-  onTap: function() {
-    $scope.groupPage();
-  },
-  styleId: "nav-settings"
-})
+    title : "Settings",
+    onTap: function() {
+      $scope.groupPage();
+    },
+    styleId: "nav-settings"
+  });
 
   var refreshBtn = new supersonic.ui.NavigationBarButton({
-  onTap: function() {
-   $scope.refreshData();
-  },
-  styleId: "nav-refresh"
-})
+    onTap: function() {
+     $scope.refreshData();
+    },
+    styleId: "nav-refresh"
+  });
 
 supersonic.ui.navigationBar.update({
   title: $scope.navTitle ,
@@ -176,7 +176,7 @@ supersonic.ui.navigationBar.update({
     left: [refreshBtn]
   }
 }).then(supersonic.ui.navigationBar.show());
- 
+
 
 
 
@@ -184,7 +184,7 @@ supersonic.ui.navigationBar.update({
 
     $scope.current();
     $scope.previous();
-    
+
   };
 
   $scope.refreshData();
@@ -287,7 +287,7 @@ supersonic.ui.navigationBar.update({
     supersonic.data.channel('changeList').subscribe(function(g){
       $scope.currentListID = g.id;
       $scope.navTitle = g.name;
-     
+
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
 
@@ -299,7 +299,7 @@ supersonic.ui.navigationBar.update({
           left: [refreshBtn]
         }
       }).then(supersonic.ui.navigationBar.show());
- 
+
       $scope.refreshData();
 
     });
