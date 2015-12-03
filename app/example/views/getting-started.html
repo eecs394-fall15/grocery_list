@@ -1,7 +1,7 @@
 
 <div class="padding" ng-controller="GettingStartedController">
 
-  <!--  <super-navbar>
+   <!-- <super-navbar>
     <super-navbar-button ng-click="groupPage()" side="left">
       <img src="/icons/change-event-name.png">
     </super-navbar-button>
@@ -12,7 +12,7 @@
 
   </super-navbar> -->
 
-    <!--Citation: The DIV below is code adapted from: https://blog.nraboy.com/2015/03/make-a-gallery-like-image-grid-using-ionic-framework/
+    <!-- Citation: The DIV below is code adapted from: https://blog.nraboy.com/2015/03/make-a-gallery-like-image-grid-using-ionic-framework/ -->
 
 
      <div class="row" ng-repeat="image in resultImages" ng-if="$index % 2 === 0 " >
@@ -26,7 +26,7 @@
                   <button class = "button button-stable button-clear" style="float: left; font-size: 85%;">{{resultImages[$index].name}} </button>
                 </div>
                 <div class = "col col-50" style="float:right;">
-                  <!-- <button class = "button button-light icon-left super-checkmark-round" style="float: right;" ng-click = "commit(resultImages[$index].id,loginNameRetrieve)" ng-if="resultImages[$index].status == 'O'">  </button> -->
+                  <!-- <button class = "button button-light icon-left super-checkmark-round" style="float: right;" ng-click = "commit(resultImages[$index].id,loginNameRetrieve)" ng-if="resultImages[$index].status == 'O'">  </button>  -->
                   <img src="/icons/commit.png" style="float: right;" ng-click = "commit(resultImages[$index].id,loginNameRetrieve)" ng-if="resultImages[$index].status == 'O'">
                   <button class="button button-light " style="float: right;font-size: 85%;" ng-if="resultImages[$index].status != 'O'" ng-click = "commit(resultImages[$index].id,loginNameRetrieve)">{{resultImages[$index].commitName}}</button>
                 </div>
