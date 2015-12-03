@@ -16,6 +16,7 @@ angular
 
   $scope.loginNameRetrieve = localStorage.getItem("loginName");
   $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
+  var loadingData = false;
 
   //test
   //var loginNameRetrieve = null;
@@ -25,7 +26,7 @@ angular
     var modalView = new supersonic.ui.View("example#login");
     var options = {
       animate: true
-    }
+    };
 
     supersonic.ui.modal.show(modalView, options);
   }
@@ -56,6 +57,10 @@ angular
   };
 
   $scope.current= function() {
+    if(loadingData){
+      return;
+    }
+    loadingData = true;
     $scope.resultImages = [];
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
@@ -94,10 +99,12 @@ angular
           $scope.resultImages.push(newImage);
 
         }
+        loadingData = false;
         $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
+        loadingData = false;
       }
     });
   };
@@ -316,7 +323,7 @@ supersonic.ui.navigationBar.update({
    $scope.showInfo = function(item) {
     supersonic.logger.log("showinfo");
 
-    if (item.quantity == undefined) {
+    if (item.quantity === undefined) {
       item.quantity = "1";
     }
 
