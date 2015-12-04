@@ -1,6 +1,6 @@
 angular
 .module('example')
-.controller('GettingStartedController', function($scope, supersonic) {
+.controller('GettingStartedController', function($scope, supersonic,$timeout,$interval) {
 
 
 
@@ -235,7 +235,8 @@ supersonic.ui.navigationBar.update({
       success: function(updateQuery) {
 
         supersonic.logger.log("saved successfully");
-        $scope.refreshData();
+        $scope.$apply();
+        $timeout($scope.current, 1000);
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -256,7 +257,8 @@ supersonic.ui.navigationBar.update({
     updateQuery.set("item_status",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
-        $scope.refreshData();
+         $scope.$apply();
+         $timeout($scope.current, 500);
 
 
       },
@@ -364,7 +366,8 @@ supersonic.ui.navigationBar.update({
             object.set("commit_name", $scope.loginNameRetrieve);
           }
           object.save();
-          $scope.current();
+          $scope.$apply();
+          $timeout($scope.current, 500);
 
         },
         error: function(error) {
