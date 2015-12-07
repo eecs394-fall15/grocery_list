@@ -8,22 +8,23 @@
 
   </super-navbar>
  <div class="item item-divider">Current Members</div>
- <div class="list" ng-repeat="item in resultImages">
-    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)">
+ <div class="list">
+    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item.id)" ng-swipe-right="swipeRight(item.id)" ng-repeat="item in resultImages">
       <img ng-src = "{{item.photo}}">
       <h2><b>{{item.name}}</b></h2>
       <p>{{item.email}}</p>
-
-
-    <button class="button button-assertive" style="border-radius:10px;" ng-click="removeMember(item.id)" >
-
+    <button class="button button-small button-assertive" style="border-radius:10px;" ng-click="removeMember(item.id)" >
         <font size="2">Remove<font></button>
-
     </a>
+    <div class="item item-divider">Options</div>
+    <div class="item" ng-click="addMemberPage()"><img src="/icons/add-member.png"> Add Member</div>
+    <!-- <div class="item" ng-click="changeEventName()"><img src="/icons/change-event-name.png"> Change Event Name</div> -->
+    <!-- <div class="item"><img src="/icons/delete-event.png">Remove Event</div> -->
   </div>
-  <div class="item item-divider">Add To Current Group</div>
-  <div class="list" ng-repeat="item1 in resultImages1">
-    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)">
+
+ <!--  <div class="item item-divider">Add To Current Group</div>
+  <div class="list">
+    <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)" ng-repeat="item1 in resultImages1">
       <img ng-src = "{{item1.photo}}">
     <h2><b>{{item1.name}}</b></h2>
       <p>{{item1.email}}</p>
@@ -34,6 +35,6 @@
 
 
     </a>
-  </div>
+  </div> -->
 
 </div>

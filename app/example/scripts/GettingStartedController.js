@@ -1,6 +1,8 @@
 angular
 .module('example')
-.controller('GettingStartedController', function($scope, supersonic) {
+.controller('GettingStartedController', function($scope, supersonic,$timeout,$interval) {
+
+
 
   window.localStorage.setItem("group_id", 1);
   window.localStorage.setItem("group_name","Grocery List");
@@ -12,26 +14,54 @@ angular
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
 
+  $scope.loginNameRetrieve = localStorage.getItem("loginName");
+  $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
+  var loadingData = false;
+
+  //test
+  //var loginNameRetrieve = null;
+
+  if ($scope.loginNameRetrieve === null || $scope.loginEmailRetrieve === null) {
+    //show login page
+    var modalView = new supersonic.ui.View("example#login");
+    var options = {
+      animate: true
+    };
+
+    supersonic.ui.modal.show(modalView, options);
+  }
+
+  $scope.loginNameRetrieve = localStorage.getItem("loginName");
+  $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
+
 
   $scope.state = "NORMAL";
 
-  $scope.makeStatusString = function(status, time) {
+  $scope.makeStatusString = function(status) {
 
     switch(status) {
       case "O":
-        return "Added to list";
+        return "";
       case "P":
-        return "Mike Got it";
+        return "";
       case "C":
-        return "Mike is Gonna Get";
+        return "Mike";
       default:
         return status;
     }
 
   };
 
+  $scope.showName = function(status) {
+    supersonic.ui.dialog.alert(status.toString());
+  };
+
   $scope.current= function() {
-    $scope.resultImages = [];
+    if(loadingData){
+      return;
+    }
+    loadingData = true;
+
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.containedIn("item_status",["O", "C"]);
@@ -42,6 +72,7 @@ angular
 
         // supersonic.ui.dialog.alert(results.length);
         // Do something with the returned Parse.Object values
+        $scope.resultImages = [];
         for (var i = 0; i < results.length; i++) {
 
           var object = results[i];
@@ -55,6 +86,7 @@ angular
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
+          newImage.commitName = object.get("commit_name");
 
           newImage.time = object.get("updatedAt");
 
@@ -62,31 +94,22 @@ angular
 
 
 
-          supersonic.logger.log(newImage.id);
           var image = object.get("itemImage");
           newImage.photo = image.url();
 
           $scope.resultImages.push(newImage);
 
         }
+        loadingData = false;
         $scope.$apply();
       },
       error: function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
+        loadingData = false;
       }
     });
   };
 
-  $scope.showInfo = function(item) {
-    var options = {
-      message: "Quantity: " + item.quantity +  "\nUnit: " + item.unit +  "\nInfo: " + item.info,
-      buttonLabel: "Close"
-    };
-
-    supersonic.ui.dialog.alert(item.name, options).then(function() {
-      supersonic.logger.log("Alert closed.");
-    });
-  };
 
 
   $scope.groupPage = function() {
@@ -136,9 +159,40 @@ angular
     });
   };
 
+
+
+  var settingsBtn = new supersonic.ui.NavigationBarButton({
+    title : "Settings",
+    onTap: function() {
+      $scope.groupPage();
+    },
+    styleId: "nav-settings"
+  });
+
+  var refreshBtn = new supersonic.ui.NavigationBarButton({
+    onTap: function() {
+     $scope.refreshData();
+    },
+    styleId: "nav-refresh"
+  });
+
+supersonic.ui.navigationBar.update({
+  title: $scope.navTitle ,
+  overrideBackButton: false,
+  buttons: {
+    right: [settingsBtn],
+    left: [refreshBtn]
+  }
+}).then(supersonic.ui.navigationBar.show());
+
+
+
+
   $scope.refreshData = function(){
+
     $scope.current();
     $scope.previous();
+
   };
 
   $scope.refreshData();
@@ -182,7 +236,8 @@ angular
       success: function(updateQuery) {
 
         supersonic.logger.log("saved successfully");
-        $scope.refreshData();
+        $scope.$apply();
+        $timeout($scope.current, 1000);
       },
       error: function(updateQuery,error) {
         supersonic.ui.dialog.alert('Not Working!!');
@@ -203,7 +258,8 @@ angular
     updateQuery.set("item_status",status);
     updateQuery.save(null,{
       success: function(updateQuery) {
-        $scope.refreshData();
+         $scope.$apply();
+         $timeout($scope.current, 500);
 
 
       },
@@ -240,11 +296,20 @@ angular
     //The function that is called when the list is changed in the sidebar
     supersonic.data.channel('changeList').subscribe(function(g){
       $scope.currentListID = g.id;
-
       $scope.navTitle = g.name;
 
       $scope.header = $scope.listNames[$scope.currentListID-1];
       $scope.$apply();
+
+      supersonic.ui.navigationBar.update({
+        title: $scope.navTitle ,
+        overrideBackButton: false,
+        buttons: {
+          right: [settingsBtn],
+          left: [refreshBtn]
+        }
+      }).then(supersonic.ui.navigationBar.show());
+
       $scope.refreshData();
 
     });
@@ -257,17 +322,53 @@ angular
      supersonic.ui.drawers.open('left');
    };
 
+
+   $scope.showInfo = function(item) {
+    supersonic.logger.log("showinfo");
+
+    if (item.quantity === undefined) {
+      item.quantity = "1";
+    }
+
+     var options = {
+       message: "Quantity: " + item.quantity +  "\nInfo: " + item.info,
+       buttonLabel: "Close"
+     };
+
+     supersonic.ui.dialog.alert(item.name, options).then(function() {
+       supersonic.logger.log("Alert closed.");
+     });
+   };
+
+
+
+
+
+
+
+
      $scope.commit = function(id) {
 
       var imageClass = Parse.Object.extend("ImageData");
       var imgQuery = new Parse.Query(imageClass);
       imgQuery.equalTo("objectId", id);
       imgQuery.first({
-        success: function(object) {
+        success: function(object,name) {
 
-          object.set("item_status", "C");
+          if (object.get("item_status") == "C")
+          {
+            if (object.get("commit_name") == $scope.loginNameRetrieve)
+              object.set("item_status", "O");
+          }
+
+          else
+          {
+            object.set("item_status", "C");
+            object.set("commit_name", $scope.loginNameRetrieve);
+          }
           object.save();
-          $scope.current();
+          $scope.$apply();
+          $timeout($scope.current, 500);
 
         },
         error: function(error) {
@@ -275,7 +376,7 @@ angular
         }
       });
 
-
   };
+
 
  });
