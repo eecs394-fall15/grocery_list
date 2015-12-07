@@ -61,7 +61,7 @@ angular
       return;
     }
     loadingData = true;
-    $scope.resultImages = [];
+
     var imageClass= Parse.Object.extend("ImageData");
     var imgQuery = new Parse.Query(imageClass);
     imgQuery.containedIn("item_status",["O", "C"]);
@@ -72,6 +72,7 @@ angular
 
         // supersonic.ui.dialog.alert(results.length);
         // Do something with the returned Parse.Object values
+        $scope.resultImages = [];
         for (var i = 0; i < results.length; i++) {
 
           var object = results[i];
