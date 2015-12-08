@@ -9,7 +9,7 @@ POTLUCK is an iOS only app which gives you an easy way to create lists of items 
 ###System Requirements
 
 * Supersonic  
-* Node.js
+* Node.js v0.10.*
 
 
 ##Installation Instructions
