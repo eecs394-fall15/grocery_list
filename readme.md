@@ -28,7 +28,7 @@ Potluck uses Parse DB as backend. Signup for an account on [https://parse.com/] 
 Add the below two lines in *app/common/view/layout.html* to Integrate parse to the app
 
     <script src="//www.parsecdn.com/js/parse-1.6.4.min.js"></script>
-    <script>Parse.initialize("*Application_key_Comes_Here*", "*Javascript Key comes here*");</script>
+    <script>Parse.initialize("Application_key_Comes_Here", "Javascript Key comes here");</script>
 
 
 
