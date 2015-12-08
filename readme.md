@@ -14,6 +14,7 @@ We did all of our testing for the app on iOS 8 and 9, and there is no guarantee 
 
 ###Known Issues
 •When running the app on a phone that is connected via LTE (as opposed to wifi) there can be issues with uploading photos to the database.
-•If multiple users try to commit to the same item approximatelt simultaneously, there is no assurance as to which one will go through to the database. Sometimes the database will receive a null value in this case
+
+•If multiple users try to commit to the same item simultaneously, there is no assurance as to which one will go through to the database. Sometimes the database will receive a null value in this case
 
 ###Next Steps
