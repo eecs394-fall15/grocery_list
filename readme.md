@@ -1,4 +1,11 @@
-#Potluck EECS 394
+#Potluck 
+
+#Developers
+Brendan Frick
+Nathan Yeazel
+Neha Rathi
+Sujana Perumal
+
 
 ##Description
 This application gives you an easy way to create lists of items to buy and share them with your friends and family. Whether it's a grocery list or planning out your next party, Potluck has you covered!
