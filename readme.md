@@ -9,13 +9,21 @@
 
 
 ##Description
-This application gives you an easy way to create lists of items to buy and share them with your friends and family. Whether it's a grocery list or planning out your next party, Potluck has you covered!
+POTLUCK is an iOS app which gives you an easy way to create lists of items to buy and share them with your friends and family. Whether it's a grocery list or planning out your next party, Potluck has you covered!
 
-###Installation Instructions
+##Installation Instructions
 
-###Building and Deploying the App
+##Running the App
 
-Mac: In terminal, navigate to the directory where the grocery_list is downloaded. Type "steroids deploy". A link will be generated which can be shared.
+Fork the repository and run: 
+
++ $steroids update
++ $steroids connect
+
+### Deploying the App
+
+Mac: In terminal, navigate to the directory where the grocery_list is downloaded. 
+$ "steroids deploy". A link will be generated which can be shared.
 
 ###Platform Requirements
 The app can be built and modified on any version of Mac or Windows that is supported by Steroids.
