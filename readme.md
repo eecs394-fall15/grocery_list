@@ -40,14 +40,14 @@ Add the below two lines in *app/common/view/layout.html* to Integrate parse to t
 
 Fork the repository and run: 
 
-+ $steroids update
-+ $steroids connect
+    + $steroids update
+    + $steroids connect
 
 ### Deploying the App
 
 In terminal, navigate to the directory where the grocery_list is downloaded and run :
 
-+ $ steroids deploy
+    + $ steroids deploy
  
 A link with the QR code will be generated which can be shared.
 
