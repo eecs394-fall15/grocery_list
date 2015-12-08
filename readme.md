@@ -8,12 +8,28 @@ POTLUCK is an iOS only app which gives you an easy way to create lists of items 
 
 ###System Requirements
 
-* Supersonic (install Supersonic at http://www.appgyver.com/) 
+* Supersonic  
 * Node.js
 
 
 ##Installation Instructions
-Follow the instructions on the [Appgyver Website](https://academy.appgyver.com/installwizard/steps#/home) to install steroids on your machine. Then, clone this repository to your computer.
+Follow the instructions on the [Appgyver Website](https://academy.appgyver.com/installwizard/steps#/home) to install supersonic on your machine. Then, clone this repository to your computer.
+
+
+##Integrating with Parse Database
+
+Potluck uses Parse DB as backend. Signup for an account on https://parse.com/ and create an app called grocery.
+Go to Settings -> Keys . You will find the Application Key id and Javascript key.
+
+Add the below two lines in app/common/view/layout.html to Integrate parse to the app
+
+<script src="//www.parsecdn.com/js/parse-1.6.4.min.js"></script>
+<script>Parse.initialize("Application_key_Comes_Here", "Javascript Key comes here");</script>
+
+
+
+
+
 
 
 ##Running the App
