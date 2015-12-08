@@ -22,8 +22,10 @@ Fork the repository and run:
 
 ### Deploying the App
 
-Mac: In terminal, navigate to the directory where the grocery_list is downloaded. 
-$ "steroids deploy". A link will be generated which can be shared.
+Mac: In terminal, navigate to the directory where the grocery_list is downloaded.Run :
+
++ $ steroids deploy
+A link with the QR code will be generated which can be shared.
 
 ###Platform Requirements
 The app can be built and modified on any version of Mac or Windows that is supported by Steroids.
