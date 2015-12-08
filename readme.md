@@ -1,6 +1,6 @@
 #Potluck 
 
-##Developers
+###Developers
 
 * Brendan Frick
 * Nathan Yeazel
@@ -8,7 +8,7 @@
 * Sujana Perumal
 
 
-##Description
+###Description
 POTLUCK is an iOS only app which gives you an easy way to create lists of items to buy and share with your friends and family. Whether it's a grocery list or planning out your next party, Potluck has you covered!
 
 ###System Requirements
@@ -19,6 +19,13 @@ POTLUCK is an iOS only app which gives you an easy way to create lists of items 
 
 ##Installation Instructions
 
+Download grocery_list repo
+
+git clone https://github.com/eecs394-fall15/grocery_list
++ cd grocery_list
++ steroids login
++ steroids update
++ steroids connect
 
 
 ##Running the App
