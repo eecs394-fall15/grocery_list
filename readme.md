@@ -1,6 +1,6 @@
 #Potluck 
 
-#Developers
+##Developers
 Brendan Frick
 Nathan Yeazel
 Neha Rathi
