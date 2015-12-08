@@ -73,4 +73,4 @@ A link with the QR code will be generated which can be shared.
 * Sujana Perumal
 
 
-#####Special thanks to Professor Chris Riesbeck ,Our Instructor who has 
+#####Special thanks to Professor Chris Riesbeck ,Our EECS 394 Instructor , for his guidance and Support throughout the project
