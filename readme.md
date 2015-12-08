@@ -1,10 +1,10 @@
 #Potluck 
 
 ##Developers
-Brendan Frick
-Nathan Yeazel
-Neha Rathi
-Sujana Perumal
+-Brendan Frick
+-Nathan Yeazel
+-Neha Rathi
+-Sujana Perumal
 
 
 ##Description
