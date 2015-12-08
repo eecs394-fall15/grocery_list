@@ -59,9 +59,9 @@ A link with the QR code will be generated which can be shared.
 - We did all of our testing for the app on iOS 8 and 9
 
 ###Known Issues
+- During steroids installation, if you
 - When running the app on a phone that is connected via LTE (as opposed to wifi) there can be a slight delay in uploading photos to the database.
 - If two users are on the same page and one user tries to add an item, the other user can click refresh icon to view the newly added item. As of now, there is no automatic refresh included
-- If multiple users try to commit to the same item simultaneously, there is no assurance as to which one will go through to the database. Sometimes the database will receive a null value in this case
 
 
 
