@@ -1,28 +1,23 @@
 angular
 .module('example')
-.controller('GettingStartedController', function($scope, supersonic,$timeout,$interval) {
+.controller('GettingStartedController', function($scope, supersonic,$timeout,$interval,ConnectParseService) {
 
 
 
   window.localStorage.setItem("group_id", 1);
   window.localStorage.setItem("group_name","Grocery List");
-
   $scope.listNames = ["Grocery List","Christmas List","Office"];
   $scope.currentListID = 1;
   $scope.header = $scope.listNames[$scope.currentListID-1];
   $scope.navTitle= "POTLUCK";
   $scope.navbarTitle = "Groceries";
   $scope.swipeID = -1;
-
   $scope.loginNameRetrieve = localStorage.getItem("loginName");
   $scope.loginEmailRetrieve = localStorage.getItem("loginEmail");
   var loadingData = false;
 
-  //test
-  //var loginNameRetrieve = null;
-
   if ($scope.loginNameRetrieve === null || $scope.loginEmailRetrieve === null) {
-    //show login page
+  
     var modalView = new supersonic.ui.View("example#login");
     var options = {
       animate: true
@@ -57,43 +52,34 @@ angular
   };
 
   $scope.current= function() {
+
     if(loadingData){
       return;
     }
     loadingData = true;
+  
 
-    var imageClass= Parse.Object.extend("ImageData");
-    var imgQuery = new Parse.Query(imageClass);
-    imgQuery.containedIn("item_status",["O", "C"]);
-    imgQuery.equalTo("list_id",$scope.currentListID);
-    imgQuery.descending("createdAt");
-    imgQuery.find({
-      success: function(results) {
-
-        // supersonic.ui.dialog.alert(results.length);
-        // Do something with the returned Parse.Object values
+    var promise = ConnectParseService.find();
+    promise.then(
+      function(results) 
+     {
+   
+       // supersonic.logger.log(results.length);
         $scope.resultImages = [];
         for (var i = 0; i < results.length; i++) {
-
-          var object = results[i];
+          supersonic.logger.log("results"+results.length);
           var newImage = {};
-
           var status ="";
+          var object = results[i];
 
           newImage.name = object.get("item_name");
-
           newImage.quantity = object.get("item_quantity");
           newImage.unit = object.get("item_unit");
           newImage.info = object.get("item_info");
           newImage.id = object.id;
           newImage.commitName = object.get("commit_name");
-
           newImage.time = object.get("updatedAt");
-
           newImage.status = object.get("item_status");
-
-
-
           var image = object.get("itemImage");
           newImage.photo = image.url();
 
@@ -103,11 +89,11 @@ angular
         loadingData = false;
         $scope.$apply();
       },
-      error: function(error) {
-        supersonic.ui.dialog.alert('Not Working!!');
+    function(error) {
+        
         loadingData = false;
-      }
-    });
+      });
+
   };
 
 
@@ -120,7 +106,7 @@ angular
         supersonic.ui.layers.push(modalView, options);
   };
 
-  $scope.previous= function() {
+/*  $scope.previous= function() {
     $scope.resultImages1 = [];
     var prevClass= Parse.Object.extend("ImageData");
     var prevQuery = new Parse.Query(prevClass);
@@ -130,8 +116,7 @@ angular
     prevQuery.find({
       success: function(results1) {
 
-        // supersonic.ui.dialog.alert(results.length);
-        // Do something with the returned Parse.Object values
+       
         for (var i = 0; i < results1.length; i++) {
 
           var object = results1[i];
@@ -157,7 +142,7 @@ angular
         supersonic.ui.dialog.alert('Not Working!!');
       }
     });
-  };
+  };*/
 
 
 
@@ -189,9 +174,8 @@ supersonic.ui.navigationBar.update({
 
 
   $scope.refreshData = function(){
-
+supersonic.logger.log("inside refresh");
     $scope.current();
-    $scope.previous();
 
   };
 
