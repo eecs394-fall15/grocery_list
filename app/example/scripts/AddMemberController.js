@@ -3,6 +3,8 @@ angular.
 	.controller('AddMemberController', function($scope, supersonic, $compile){
 
 	var currentUsers = window.localStorage.getItem('currentUsers');
+	$scope.groupid = window.localStorage.getItem('gid');
+	
 	if(currentUsers === null){
 		currentUsers = [];
 	}
@@ -48,10 +50,13 @@ angular.
 	};
 	$scope.findFriends();
 
-	$scope.addMember = function(username,email){
+	$scope.addMember = function(username,email,groupid){
+		
 		var addedUser = {
 			username: username,
-			email: email
+			email: email,
+			gid: groupid
+
 		};
 		supersonic.data.channel('addingUser').publish(addedUser);
 	}

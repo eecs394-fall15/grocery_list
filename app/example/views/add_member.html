@@ -12,9 +12,9 @@
     <a  id= "item.id" class="item item-thumbnail-left" href="#" ng-swipe-left="swipeLeft(item1.id)" ng-swipe-right="swipeRight(item1.id)" ng-repeat="item1 in resultImages1">
       <img ng-src = "{{item1.photo}}">
     <h2><b>{{item1.name}}</b></h2>
-      <p>{{item1.email}}</p>
-
-      <button class="button button-balanced" style="border-radius:10px;" ng-click="addMember(item1.name,item1.email)" >
+    <p>{{item1.email}}</p>
+   
+      <button class="button button-balanced" style="border-radius:10px;" ng-click="addMember(item1.name,item1.email,groupid)" >
         <font size="2">Add<font>
       </button>
 

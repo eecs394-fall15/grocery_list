@@ -1,0 +1,60 @@
+Last login: Thu Dec 10 01:24:34 on ttys000
+Sujanas-MacBook-Air:~ sujanap$ cd grocery_list/
+Sujanas-MacBook-Air:grocery_list sujanap$ karma start
+10 12 2015 01:25:05.619:DEBUG [plugin]: Loading karma-* from /Users/sujanap/grocery_list/node_modules
+10 12 2015 01:25:05.623:DEBUG [plugin]: Loading plugin /Users/sujanap/grocery_list/node_modules/karma-chrome-launcher.
+10 12 2015 01:25:05.672:DEBUG [plugin]: Loading plugin /Users/sujanap/grocery_list/node_modules/karma-jasmine.
+10 12 2015 01:25:05.680:DEBUG [plugin]: Loading plugin /Users/sujanap/grocery_list/node_modules/karma-phantomjs-launcher.
+10 12 2015 01:25:05.875:DEBUG [karma]: List of files has changed, trying to execute
+10 12 2015 01:25:05.875:WARN [karma]: No captured browser, open http://localhost:9876/
+10 12 2015 01:25:05.879:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/bower_components/angular/angular.js"
+10 12 2015 01:25:05.879:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/node_modules/angular-mocks/angular-mocks.js"
+10 12 2015 01:25:05.880:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/bower_components/parse-sdk/lib/parse.js"
+10 12 2015 01:25:05.880:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/bower_components/supersonic/supersonic.js"
+10 12 2015 01:25:05.880:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/app/example/index.js"
+10 12 2015 01:25:05.880:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/app/example/scripts/GroupSettingsController.js"
+10 12 2015 01:25:05.881:DEBUG [watcher]: Watching "/Users/sujanap/grocery_list/app/tests/GroupSettingsControllerTest.js"
+10 12 2015 01:25:05.884:INFO [karma]: Karma v0.13.15 server started at http://localhost:9876/
+10 12 2015 01:25:05.899:INFO [launcher]: Starting browser PhantomJS
+10 12 2015 01:25:05.900:DEBUG [temp-dir]: Creating temp dir at /var/folders/z0/7p_c1b3d3v1_kvrsy8yw33l00000gn/T/karma-6026438
+10 12 2015 01:25:05.913:DEBUG [launcher]: /Users/sujanap/grocery_list/node_modules/phantomjs/lib/phantom/bin/phantomjs /var/folders/z0/7p_c1b3d3v1_kvrsy8yw33l00000gn/T/karma-6026438/capture.js
+10 12 2015 01:25:07.247:DEBUG [web-server]: serving: /Users/sujanap/grocery_list/node_modules/karma/static/client.html
+10 12 2015 01:25:07.282:DEBUG [web-server]: serving: /Users/sujanap/grocery_list/node_modules/karma/static/karma.js
+10 12 2015 01:25:07.334:DEBUG [karma]: A browser has connected on socket omJwZLzB71APYYhdAAAA
+10 12 2015 01:25:07.337:DEBUG [web-server]: upgrade /socket.io/?EIO=3&transport=websocket&sid=omJwZLzB71APYYhdAAAA
+10 12 2015 01:25:07.361:INFO [PhantomJS 1.9.8 (Mac OS X 0.0.0)]: Connected on socket omJwZLzB71APYYhdAAAA with id 6026438
+10 12 2015 01:25:07.362:DEBUG [launcher]: PhantomJS (id 6026438) captured in 1.477 secs
+10 12 2015 01:25:07.362:DEBUG [karma]: All browsers are ready, executing
+10 12 2015 01:25:07.374:DEBUG [web-server]: serving: /Users/sujanap/grocery_list/node_modules/karma/static/context.html
+10 12 2015 01:25:07.377:DEBUG [middlware:source-files]: Requesting /base/node_modules/jasmine-core/lib/jasmine-core/jasmine.js?391e45351df9ee35392d2e5cb623221a969fc009 /
+10 12 2015 01:25:07.378:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/node_modules/jasmine-core/lib/jasmine-core/jasmine.js
+10 12 2015 01:25:07.379:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/node_modules/jasmine-core/lib/jasmine-core/jasmine.js
+10 12 2015 01:25:07.381:DEBUG [middlware:source-files]: Requesting /base/node_modules/karma-jasmine/lib/boot.js?4a7da64f416169520c9d5c43b5a7feac6bde9104 /
+10 12 2015 01:25:07.381:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/node_modules/karma-jasmine/lib/boot.js
+10 12 2015 01:25:07.382:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/node_modules/karma-jasmine/lib/boot.js
+10 12 2015 01:25:07.383:DEBUG [middlware:source-files]: Requesting /base/bower_components/supersonic/supersonic.js?0806f786c30a8907918668a1b729244b6d39b7aa /
+10 12 2015 01:25:07.383:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/bower_components/supersonic/supersonic.js
+10 12 2015 01:25:07.383:DEBUG [middlware:source-files]: Requesting /base/node_modules/karma-jasmine/lib/adapter.js?3030709c83121e1b2ca4d1e657306b834fc13350 /
+10 12 2015 01:25:07.384:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/node_modules/karma-jasmine/lib/adapter.js
+10 12 2015 01:25:07.384:DEBUG [middlware:source-files]: Requesting /base/bower_components/angular/angular.js?a9c4c77c62298e30c6c471674653d9127893abae /
+10 12 2015 01:25:07.384:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/bower_components/angular/angular.js
+10 12 2015 01:25:07.384:DEBUG [middlware:source-files]: Requesting /base/bower_components/parse-sdk/lib/parse.js?0dd3199a87054af24d6e548cdb1b2a41f9821953 /
+10 12 2015 01:25:07.385:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/bower_components/parse-sdk/lib/parse.js
+10 12 2015 01:25:07.385:DEBUG [middlware:source-files]: Requesting /base/node_modules/angular-mocks/angular-mocks.js?41fb2d656d9a871440ee139e6491d0e2b124ebc8 /
+10 12 2015 01:25:07.385:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/node_modules/angular-mocks/angular-mocks.js
+10 12 2015 01:25:07.386:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/bower_components/supersonic/supersonic.js
+10 12 2015 01:25:07.397:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/node_modules/karma-jasmine/lib/adapter.js
+10 12 2015 01:25:07.397:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/bower_components/angular/angular.js
+10 12 2015 01:25:07.406:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/bower_components/parse-sdk/lib/parse.js
+10 12 2015 01:25:07.409:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/node_modules/angular-mocks/angular-mocks.js
+10 12 2015 01:25:07.411:DEBUG [middlware:source-files]: Requesting /base/app/example/scripts/GroupSettingsController.js?9c2a005199bed2df39313e856990861d82026cee /
+10 12 2015 01:25:07.411:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/app/example/scripts/GroupSettingsController.js
+10 12 2015 01:25:07.411:DEBUG [middlware:source-files]: Requesting /base/app/tests/GroupSettingsControllerTest.js?3fb69526ac2017bc9e86872f91a4942e82166e5d /
+10 12 2015 01:25:07.412:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/app/tests/GroupSettingsControllerTest.js
+10 12 2015 01:25:07.412:DEBUG [middlware:source-files]: Requesting /base/app/example/index.js?87593413b323ae6b60652d1274a06220f86eddd1 /
+10 12 2015 01:25:07.412:DEBUG [middlware:source-files]: Fetching /Users/sujanap/grocery_list/app/example/index.js
+10 12 2015 01:25:07.413:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/app/example/scripts/GroupSettingsController.js
+10 12 2015 01:25:07.414:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/app/tests/GroupSettingsControllerTest.js
+10 12 2015 01:25:07.415:DEBUG [web-server]: serving (cached): /Users/sujanap/grocery_list/app/example/index.js
+PhantomJS 1.9.8 (Mac OS X 0.0.0): Executed 3 of 3 SUCCESS (0.004 secs / 0.02 secs)
+

@@ -1,6 +1,6 @@
 angular
 .module('example')
-.controller('GroupSettingsController', function($scope, supersonic) {
+.controller('GroupSettingsController', function($scope, supersonic, ConnectParseService) {
 
 
   $scope.listNames = ["Grocery List","Christmas List","Office"];
@@ -14,16 +14,16 @@ angular
 
   $scope.current= function() {
     $scope.resultImages = [];
-    var imageClass= Parse.Object.extend("User_Details");
+   /* var imageClass= Parse.Object.extend("User_Details");
     var imgQuery = new Parse.Query(imageClass);
-    imgQuery.equalTo("Group_ID", $scope.currentListID);
-    imgQuery.find({
-      success: function(results) {
+    imgQuery.equalTo("Group_ID", $scope.currentListID);*/
+   var promise = ConnectParseService.find($scope.currentListID);
+   promise.then(
+      function(results) {
 
-      supersonic.logger.log(results.length);
         // Do something with the returned Parse.Object values
         for (var i = 0; i < results.length; i++) {
-
+          debugger;
           var object = results[i];
           var newImage = {};
           var status ="";
@@ -48,13 +48,12 @@ angular
           $scope.resultImages.push(newImage);
 
         }
-        $scope.$apply();
-        $scope.previous();
+       // $scope.$apply();
+        //$scope.previous();
       },
-      error: function(error) {
+      function(error) {
         supersonic.ui.dialog.alert('Not Working!!');
-      }
-    });
+      });
   };
 
   // $scope.showInfo = function(item) {
@@ -120,32 +119,32 @@ angular
 
 
   //OLD Version of the add member function
-  $scope.addMember = function(username,email) {
-    var  InsertClass= Parse.Object.extend("User_Details");
-    supersonic.logger.log("here");
+  $scope.addMember = function(username,email,gid) {
     var status="O";
-    var insertQuery = new InsertClass();
-    insertQuery.set("Group_ID",$scope.currentListID);
-    insertQuery.set("User_Name",username );
-    insertQuery.set("email",email);
-    insertQuery.save(null,{
-      success: function(updateQuery) {
 
+     var promise = ConnectParseService.save(username,email,gid);
+     promise.then(
+      function(response) {
+        
         supersonic.ui.dialog.alert(username + ' was added successfully!!');
+        $scope.message = response;
         $scope.refreshData();
       },
-      error: function(updateQuery,error) {
+    function(error) {
+        $scope.message = error; 
         supersonic.ui.dialog.alert('Not Working!!');
-      }
-    });
+
+       });
   };
+
   supersonic.data.channel('addingUser').subscribe(function(user){
-    $scope.addMember(user.username, user.email);
+    $scope.addMember(user.username, user.email,user.gid);
   });
   //New version of the addMember function
   $scope.addMemberPage = function(){
     var addMembersView = new supersonic.ui.View('example#add_member');
     window.localStorage.setItem('currentUsers', currentUsers);
+    window.localStorage.setItem('gid', $scope.currentListID);
     var options = {
       animate: true,
     };
